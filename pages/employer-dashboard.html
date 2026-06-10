@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Employer Dashboard — JobForest 🌲</title>
+  
+  <!-- Typography & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- CSS Stylesheets -->
+  <link rel="stylesheet" href="../css/design-system.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/layouts.css">
+  <link rel="stylesheet" href="../css/pages.css">
+</head>
+<body class="theme-dark">
+
+  <main class="page-container" style="padding-top: 80px;">
+    <div class="container py-8">
+      
+      <div class="grid grid-cols-4 gap-8">
+        
+        <!-- Sidebar Navigation -->
+        <aside class="col-span-1 reveal">
+          <div class="card glass-card" id="employer-sidebar" style="padding: var(--space-4); position: sticky; top: 100px;">
+            <!-- Recruiter summary header -->
+            <div class="text-center pb-6 border-b border-light" id="sidebar-employer-header">
+              <div class="avatar avatar-2xl mx-auto mb-3" id="sidebar-avatar">SC</div>
+              <h3 style="margin:0; font-size:var(--text-md);" id="sidebar-name">Loading Recruiter...</h3>
+              <span class="text-xs text-primary font-semibold mt-1" id="sidebar-company-name" style="display:inline-block;">TechNova Solutions</span>
+            </div>
+
+            <!-- Tab list links -->
+            <nav class="flex flex-col gap-1 mt-6">
+              <a href="#overview" class="sidebar-nav-item active" data-tab="overview" id="nav-employer-overview">
+                <span>📊</span> Overview
+              </a>
+              <a href="#posts" class="sidebar-nav-item" data-tab="posts" id="nav-employer-posts">
+                <span>📁</span> Job Posts
+              </a>
+              <a href="#candidates" class="sidebar-nav-item" data-tab="candidates" id="nav-employer-candidates">
+                <span>👥</span> Candidates Screening
+              </a>
+              <a href="#messages" class="sidebar-nav-item" data-tab="messages" id="nav-employer-messages">
+                <span>✉️</span> Messages Inbox
+              </a>
+              <a href="#company" class="sidebar-nav-item" data-tab="company" id="nav-employer-company">
+                <span>🏢</span> Company Profile
+              </a>
+            </nav>
+          </div>
+        </aside>
+
+        <!-- Main Dynamic Content Slot -->
+        <section class="col-span-3 reveal" id="employer-main-content">
+          <div class="btn-loader" style="margin: 50px auto;"></div>
+          <!-- Injected dynamically by dashboard.js -->
+        </section>
+
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Script Modules -->
+  <script src="../js/data.js"></script>
+  <script src="../js/components.js"></script>
+  <script src="../js/matching.js"></script>
+  <script src="../js/dashboard.js"></script>
+  <script src="../js/app.js"></script>
+  
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Injects navbar
+      Components.renderNavbar('employer-dashboard');
+      App.init('employer-dashboard');
+
+      // Populate user and company info on sidebar
+      const user = JobForestData.getCurrentUser();
+      if (user) {
+        document.getElementById('sidebar-name').textContent = `${user.firstName} ${user.lastName}`;
+        document.getElementById('sidebar-avatar').textContent = user.avatar || user.firstName[0];
+        document.getElementById('sidebar-company-name').textContent = user.companyName || 'My Startup';
+      }
+
+      // Start dashboard routing
+      Dashboard.init();
+      Components.renderFooter('employer-dashboard');
+    });
+  </script>
+</body>
+</html>

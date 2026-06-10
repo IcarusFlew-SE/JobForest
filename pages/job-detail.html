@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Job Details — JobForest 🌲</title>
+  
+  <!-- Typography & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- CSS Stylesheets -->
+  <link rel="stylesheet" href="../css/design-system.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/layouts.css">
+  <link rel="stylesheet" href="../css/pages.css">
+</head>
+<body class="theme-dark">
+
+  <main class="page-container" style="padding-top: 80px;">
+    <div class="container py-8" id="job-detail-container">
+      
+      <!-- Top back link -->
+      <div class="mb-6 reveal">
+        <a href="jobs.html" class="text-sm text-primary font-semibold">⬅ Back to job listings</a>
+      </div>
+
+      <!-- Main Columns -->
+      <div class="grid grid-cols-3 gap-8">
+        
+        <!-- Left Pane: Job Details Content -->
+        <div class="col-span-2 reveal">
+          <div class="card glass-card" style="padding: var(--space-8);">
+            
+            <div class="flex justify-between items-start mb-6 pb-6" style="border-bottom: 1px solid var(--border-light);">
+              <div>
+                <span class="tag tag-primary mb-2" id="job-tag-type">Full-time</span>
+                <span class="tag tag-info mb-2" id="job-tag-workmode">Hybrid</span>
+                <h1 style="font-family: 'Outfit', sans-serif; font-size: 2.2rem; font-weight: 800; margin: 4px 0 8px;" id="job-title">Senior Frontend Developer</h1>
+                <p class="text-secondary" style="font-size: var(--text-md);" id="job-company-location">TechNova Solutions • San Francisco, CA</p>
+              </div>
+              <div class="text-right">
+                <span class="text-2xl font-bold text-gradient" id="job-salary">$120K - $160K</span>
+                <p class="text-xs text-tertiary mt-1" id="job-posted">Posted 2 days ago</p>
+              </div>
+            </div>
+
+            <!-- Description -->
+            <div class="mb-8">
+              <h2>Job Description</h2>
+              <p class="text-secondary" style="line-height:1.6; white-space:pre-wrap;" id="job-description">
+                Loading job description details...
+              </p>
+            </div>
+
+            <!-- Requirements -->
+            <div class="mb-8">
+              <h2>Requirements</h2>
+              <ul class="list-bullet text-secondary" id="job-requirements-list">
+                <!-- Injected dynamically -->
+              </ul>
+            </div>
+
+            <!-- Responsibilities -->
+            <div class="mb-8">
+              <h2>Responsibilities</h2>
+              <ul class="list-bullet text-secondary" id="job-responsibilities-list">
+                <!-- Injected dynamically -->
+              </ul>
+            </div>
+
+            <!-- Benefits -->
+            <div>
+              <h2>Benefits & Perks</h2>
+              <div class="flex flex-wrap gap-2 mt-4" id="job-benefits-chips">
+                <!-- Injected dynamically -->
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Right Pane: Actions & Company Summary -->
+        <aside class="col-span-1 reveal">
+          <!-- Quick actions -->
+          <div class="card glass-card mb-6" style="padding: var(--space-6);">
+            <div class="flex flex-col gap-3">
+              <button class="btn btn-primary btn-block btn-lg" id="apply-btn">Apply Now</button>
+              <button class="btn btn-outline btn-block" id="bookmark-btn">⭐ Save Job</button>
+              <hr style="border-color: var(--border-light); margin: var(--space-2) 0;" />
+              <div class="flex justify-between text-xs text-tertiary">
+                <span>Active Candidates:</span>
+                <span class="font-semibold text-secondary" id="job-applicants-count">24 applied</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Company profile card -->
+          <div class="card glass-card" style="padding: var(--space-6);" id="company-sidebar-card">
+            <h3>Company Spotlight</h3>
+            <div class="flex items-center gap-3 my-4">
+              <div class="avatar avatar-xl" id="company-logo">🚀</div>
+              <div>
+                <h4 style="margin:0;" id="company-name">TechNova Solutions</h4>
+                <a href="#" target="_blank" class="text-xs text-primary" id="company-website">technova.io</a>
+              </div>
+            </div>
+            <p class="text-xs text-secondary mb-4" style="line-height: 1.5;" id="company-desc">
+              Building next-gen SaaS portals.
+            </p>
+            <div class="flex flex-col gap-2 pt-3 border-t border-light text-xs text-secondary">
+              <div class="flex justify-between">
+                <span class="text-tertiary">Industry:</span>
+                <span class="font-semibold" id="company-industry">Technology</span>
+              </div>
+              <div class="flex justify-between">
+                <span class="text-tertiary">Size:</span>
+                <span class="font-semibold" id="company-size">500-1000</span>
+              </div>
+              <div class="flex justify-between">
+                <span class="text-tertiary">Headquarters:</span>
+                <span class="font-semibold" id="company-hq">San Francisco, CA</span>
+              </div>
+            </div>
+          </div>
+        </aside>
+
+      </div>
+
+      <!-- Similar Jobs -->
+      <section class="mt-12 pt-12 reveal" style="border-top:1px solid var(--border-light);">
+        <h2 class="mb-6">Similar Opportunities</h2>
+        <div class="grid grid-cols-3 gap-6" id="similar-jobs-grid">
+          <!-- Rendered dynamically -->
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- Script Modules -->
+  <script src="../js/data.js"></script>
+  <script src="../js/components.js"></script>
+  <script src="../js/app.js"></script>
+  
+  <script>
+    let currentJob = null;
+    let currentUser = null;
+
+    document.addEventListener('DOMContentLoaded', () => {
+      Components.renderNavbar('job-detail');
+      App.init('job-detail');
+      currentUser = JobForestData.getCurrentUser();
+
+      // Read parameter
+      const params = App.getUrlParams();
+      const jobId = params.id || 'j1';
+      currentJob = JobForestData.getJobById(jobId);
+
+      if (!currentJob) {
+        document.getElementById('job-detail-container').innerHTML = `
+          <div class="text-center p-12 card glass-card">
+            <h2>Error: Job opening not found</h2>
+            <a href="jobs.html" class="btn btn-primary btn-sm mt-4">Back to Jobs</a>
+          </div>
+        `;
+        return;
+      }
+
+      renderJobDetails();
+      renderSimilarJobs();
+      setupActions();
+      Components.renderFooter('job-detail');
+    });
+
+    function renderJobDetails() {
+      const company = JobForestData.getCompanyById(currentJob.companyId);
+
+      document.getElementById('job-title').textContent = currentJob.title;
+      document.getElementById('job-tag-type').textContent = currentJob.type;
+      document.getElementById('job-tag-workmode').textContent = currentJob.workMode;
+      document.getElementById('job-company-location').textContent = `${company?.name || 'Company'} • 📍 ${currentJob.location}`;
+      document.getElementById('job-salary').textContent = JobForestData.formatSalary(currentJob.salary.min, currentJob.salary.max);
+      document.getElementById('job-posted').textContent = `Posted ${JobForestData.timeAgo(currentJob.posted)}`;
+      document.getElementById('job-description').textContent = currentJob.description;
+      document.getElementById('job-applicants-count').textContent = `${currentJob.applicants} candidates applied`;
+
+      // Requirements
+      const reqList = document.getElementById('job-requirements-list');
+      reqList.innerHTML = currentJob.requirements.map(r => `<li>${r}</li>`).join('');
+
+      // Responsibilities
+      const respList = document.getElementById('job-responsibilities-list');
+      respList.innerHTML = currentJob.responsibilities.map(r => `<li>${r}</li>`).join('');
+
+      // Benefits
+      const benefitsChips = document.getElementById('job-benefits-chips');
+      benefitsChips.innerHTML = currentJob.benefits.map(b => `<span class="tag">${b}</span>`).join('');
+
+      // Sidebar Company spotlight
+      if (company) {
+        document.getElementById('company-name').textContent = company.name;
+        document.getElementById('company-logo').textContent = company.logo || '🏢';
+        document.getElementById('company-website').textContent = company.website || 'website.com';
+        document.getElementById('company-website').href = `https://${company.website || '#'}`;
+        document.getElementById('company-desc').textContent = company.description || 'No description provided.';
+        document.getElementById('company-industry').textContent = company.industry;
+        document.getElementById('company-size').textContent = `${company.size} employees`;
+        document.getElementById('company-hq').textContent = company.location;
+      }
+
+      // Applied state update
+      updateApplyButtonState();
+
+      // Bookmark button text update
+      const bookmarkBtn = document.getElementById('bookmark-btn');
+      if (bookmarkBtn) {
+        const isSaved = JobForestData.isJobSaved(currentJob.id);
+        bookmarkBtn.textContent = isSaved ? '★ Saved Job' : '☆ Save Job';
+        bookmarkBtn.classList.toggle('saved', isSaved);
+      }
+    }
+
+    function updateApplyButtonState() {
+      const applyBtn = document.getElementById('apply-btn');
+      if (!applyBtn) return;
+
+      if (currentUser && JobForestData.hasApplied(currentUser.id, currentJob.id)) {
+        applyBtn.textContent = '✓ Already Applied';
+        applyBtn.disabled = true;
+        applyBtn.style.opacity = '0.6';
+        applyBtn.style.cursor = 'not-allowed';
+      }
+    }
+
+    function setupActions() {
+      const applyBtn = document.getElementById('apply-btn');
+      const bookmarkBtn = document.getElementById('bookmark-btn');
+
+      if (applyBtn) {
+        applyBtn.addEventListener('click', () => {
+          if (!currentUser) {
+            Components.showToast('Please log in or register to submit applications!', 'warning');
+            setTimeout(() => {
+              window.location.href = `login.html?redirect=job-detail.html?id=${currentJob.id}`;
+            }, 1500);
+            return;
+          }
+
+          if (currentUser.role === 'employer') {
+            Components.showToast('Employers cannot apply to job postings.', 'warning');
+            return;
+          }
+
+          // Open cover letter modal
+          const modalBody = `
+            <div class="form-group" style="margin:0;">
+              <p class="text-sm text-secondary mb-4">You are applying to <strong>${currentJob.title}</strong> at <strong>${JobForestData.getCompanyById(currentJob.companyId)?.name}</strong>.</p>
+              <label class="form-label">Introduce yourself (Cover Letter)<span class="required">*</span></label>
+              <textarea class="form-textarea" id="cover-letter-input" rows="5" placeholder="Dear Hiring Manager,\n\nI am thrilled to apply..."></textarea>
+            </div>
+            <div class="form-group mt-4">
+              <label class="form-label">Resume Folder</label>
+              <input type="text" class="form-input" style="background: rgba(255,255,255,0.03);" value="📄 ${currentUser.firstName}_${currentUser.lastName}_Resume.pdf" disabled />
+              <p class="form-hint">Your current profile builder data is synced as resume folder attachments.</p>
+            </div>
+          `;
+
+          const modalFooter = `
+            <button class="btn btn-ghost btn-sm" onclick="Components.closeModal()">Cancel</button>
+            <button class="btn btn-primary btn-sm" id="submit-app-btn">Submit Folder</button>
+          `;
+
+          Components.showModal('Submit Job Application', modalBody, modalFooter);
+
+          const submitBtn = document.getElementById('submit-app-btn');
+          if (submitBtn) {
+            submitBtn.addEventListener('click', () => {
+              const text = document.getElementById('cover-letter-input')?.value.trim();
+              if (!text) {
+                Components.showToast('Please draft a short statement introduction first.', 'warning');
+                return;
+              }
+
+              JobForestData.saveApplication(currentUser.id, currentJob.id, text);
+              
+              // Increment mock applicant count locally
+              currentJob.applicants++;
+              const jobs = JobForestData.getJobs();
+              const idx = jobs.findIndex(j => j.id === currentJob.id);
+              if (idx >= 0) jobs[idx] = currentJob;
+              localStorage.setItem('jf_jobs', JSON.stringify(jobs));
+
+              Components.closeModal();
+              Components.showToast('Folder submitted! Check status on dashboard.', 'success');
+              
+              updateApplyButtonState();
+              document.getElementById('job-applicants-count').textContent = `${currentJob.applicants} candidates applied`;
+            });
+          }
+        });
+      }
+
+      if (bookmarkBtn) {
+        bookmarkBtn.addEventListener('click', () => {
+          const nowSaved = JobForestData.toggleSavedJob(currentJob.id);
+          bookmarkBtn.textContent = nowSaved ? '★ Saved Job' : '☆ Save Job';
+          bookmarkBtn.classList.toggle('saved', nowSaved);
+          Components.showToast(nowSaved ? 'Opportunity saved!' : 'Opportunity removed from bookmarks', nowSaved ? 'success' : 'info');
+        });
+      }
+    }
+
+    function renderSimilarJobs() {
+      const grid = document.getElementById('similar-jobs-grid');
+      if (!grid) return;
+
+      const similar = JobForestData.getJobs().filter(j => 
+        j.category === currentJob.category && 
+        j.id !== currentJob.id &&
+        j.status === 'active'
+      ).slice(0, 3);
+
+      if (similar.length === 0) {
+        grid.innerHTML = '<div class="text-tertiary col-span-3 text-sm">No similar openings in this category found.</div>';
+        return;
+      }
+
+      similar.forEach(job => {
+        const card = Components.renderJobCard(job, { basePath: '' });
+        grid.appendChild(card);
+      });
+    }
+  </script>
+</body>
+</html>

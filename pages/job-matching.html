@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Job Matching — JobForest 🌲</title>
+  
+  <!-- Typography & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- CSS Stylesheets -->
+  <link rel="stylesheet" href="../css/design-system.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/layouts.css">
+  <link rel="stylesheet" href="../css/pages.css">
+</head>
+<body class="theme-dark">
+
+  <main class="page-container" style="padding-top: 80px;">
+    <div class="container py-8">
+      
+      <div class="dashboard-header flex justify-between items-center mb-8 reveal">
+        <div>
+          <h2>AI Job Alignment Matching</h2>
+          <p class="text-secondary">Our engine calculates real-time match scores using skills, experience years, and work mode preferences.</p>
+        </div>
+        <button class="btn btn-primary btn-sm" id="recalculate-match-btn">🎯 Recalculate Matches</button>
+      </div>
+
+      <!-- User Skills Summary Header Card -->
+      <div class="card glass-card mb-8" id="match-skills-summary" style="padding: var(--space-5);">
+        <div class="btn-loader"></div>
+      </div>
+
+      <div class="grid grid-cols-4 gap-8">
+        
+        <!-- Main matched jobs grid -->
+        <section class="col-span-3">
+          <h3 class="mb-4 reveal">Top Matched Positions</h3>
+          <div class="grid grid-cols-2 gap-6" id="matches-grid">
+            <!-- Rendered dynamically by matching.js -->
+            <div class="btn-loader col-span-2" style="margin: 50px auto;"></div>
+          </div>
+        </section>
+
+        <!-- Sidebar Improvement Panel -->
+        <aside class="col-span-1 reveal">
+          <div class="card glass-card" style="padding: var(--space-5); position: sticky; top: 100px;">
+            <h3>Match Booster</h3>
+            <p class="text-xs text-secondary mt-2 mb-4" style="line-height:1.5;">
+              Enhance your profile alignment. Adding matching skills requested by active employers dynamically increases your fit score.
+            </p>
+            <div id="missing-skills-helper">
+              <!-- Rendered dynamically by matching.js -->
+            </div>
+          </div>
+        </aside>
+
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Script Modules -->
+  <script src="../js/data.js"></script>
+  <script src="../js/components.js"></script>
+  <script src="../js/matching.js"></script>
+  <script src="../js/app.js"></script>
+  
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      Components.renderNavbar('matching');
+      App.init('matching');
+
+      const user = JobForestData.getCurrentUser();
+      if (!user) {
+        Components.showToast('Please log in as a candidate to evaluate job matches.', 'warning');
+        setTimeout(() => { window.location.href = 'login.html'; }, 1500);
+        return;
+      }
+
+      if (user.role === 'employer') {
+        document.querySelector('main').innerHTML = `
+          <div class="container py-16 text-center">
+            <div class="card glass-card max-w-md mx-auto p-12">
+              <h2>Job Matching is for Candidates Only</h2>
+              <p class="text-secondary mt-2">Evaluate specific applicants under the Candidates tab on the Employer dashboard.</p>
+              <a href="employer-dashboard.html" class="btn btn-primary btn-sm mt-6">Go to Dashboard</a>
+            </div>
+          </div>
+        `;
+        return;
+      }
+
+      Matching.init();
+      Components.renderFooter('matching');
+    });
+  </script>
+</body>
+</html>

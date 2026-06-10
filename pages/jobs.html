@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Browse Jobs — JobForest 🌲</title>
+  
+  <!-- Typography & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- CSS Stylesheets -->
+  <link rel="stylesheet" href="../css/design-system.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/layouts.css">
+  <link rel="stylesheet" href="../css/pages.css">
+</head>
+<body class="theme-dark">
+
+  <main class="page-container" style="padding-top: 80px;">
+    <div class="container py-8">
+      
+      <div class="grid grid-cols-4 gap-8">
+        
+        <!-- Left Sidebar: Filter Form -->
+        <aside class="col-span-1 reveal">
+          <div class="card glass-card sticky" style="top: 100px; padding: var(--space-5);">
+            <div class="flex justify-between items-center mb-6">
+              <h3 style="font-size:var(--text-lg); margin:0;">Filter Search</h3>
+              <button class="btn btn-ghost btn-xs" id="clear-filters-btn" style="color: var(--color-error);">Clear All</button>
+            </div>
+
+            <form id="filter-form">
+              <!-- Keyword -->
+              <div class="form-group">
+                <label class="form-label">Search Keyword</label>
+                <input type="text" class="form-input" id="search-input" placeholder="Title, company, skills..." />
+              </div>
+
+              <!-- Location -->
+              <div class="form-group">
+                <label class="form-label">Location</label>
+                <input type="text" class="form-input" id="location-input" placeholder="e.g. Seattle, WA" />
+              </div>
+
+              <!-- Salary Slider -->
+              <div class="form-group">
+                <div class="flex justify-between items-center mb-1">
+                  <label class="form-label" style="margin:0;">Min Salary</label>
+                  <span class="text-xs text-primary font-semibold" id="salary-val">$40K</span>
+                </div>
+                <input type="range" class="form-input" style="padding:0; accent-color: var(--color-primary);" id="salary-slider" min="40000" max="200000" step="10000" value="40000" />
+              </div>
+
+              <!-- Job Type -->
+              <div class="form-group">
+                <label class="form-label">Job Type</label>
+                <div class="flex flex-col gap-2">
+                  <label class="flex items-center gap-2 text-sm text-secondary">
+                    <input type="checkbox" class="type-checkbox" value="Full-time" /> Full-Time
+                  </label>
+                  <label class="flex items-center gap-2 text-sm text-secondary">
+                    <input type="checkbox" class="type-checkbox" value="Part-time" /> Part-Time
+                  </label>
+                  <label class="flex items-center gap-2 text-sm text-secondary">
+                    <input type="checkbox" class="type-checkbox" value="Contract" /> Contract
+                  </label>
+                  <label class="flex items-center gap-2 text-sm text-secondary">
+                    <input type="checkbox" class="type-checkbox" value="Internship" /> Internship
+                  </label>
+                </div>
+              </div>
+
+              <!-- Work Mode -->
+              <div class="form-group">
+                <label class="form-label">Work Setting</label>
+                <div class="flex flex-col gap-2">
+                  <label class="flex items-center gap-2 text-sm text-secondary">
+                    <input type="checkbox" class="workmode-checkbox" value="Remote" /> Remote
+                  </label>
+                  <label class="flex items-center gap-2 text-sm text-secondary">
+                    <input type="checkbox" class="workmode-checkbox" value="Hybrid" /> Hybrid
+                  </label>
+                  <label class="flex items-center gap-2 text-sm text-secondary">
+                    <input type="checkbox" class="workmode-checkbox" value="Onsite" /> Onsite
+                  </label>
+                </div>
+              </div>
+
+              <!-- Experience Tier -->
+              <div class="form-group">
+                <label class="form-label">Experience Tier</label>
+                <div class="flex flex-col gap-2">
+                  <label class="flex items-center gap-2 text-sm text-secondary">
+                    <input type="checkbox" class="experience-checkbox" value="Entry" /> Entry Level
+                  </label>
+                  <label class="flex items-center gap-2 text-sm text-secondary">
+                    <input type="checkbox" class="experience-checkbox" value="Mid" /> Mid Level
+                  </label>
+                  <label class="flex items-center gap-2 text-sm text-secondary">
+                    <input type="checkbox" class="experience-checkbox" value="Senior" /> Senior Level
+                  </label>
+                  <label class="flex items-center gap-2 text-sm text-secondary">
+                    <input type="checkbox" class="experience-checkbox" value="Executive" /> Executive
+                  </label>
+                </div>
+              </div>
+
+              <!-- Category -->
+              <div class="form-group">
+                <label class="form-label">Category</label>
+                <div class="flex flex-col gap-2">
+                  <label class="flex items-center gap-2 text-sm text-secondary">
+                    <input type="checkbox" class="category-checkbox" value="Engineering" /> Engineering
+                  </label>
+                  <label class="flex items-center gap-2 text-sm text-secondary">
+                    <input type="checkbox" class="category-checkbox" value="Data Science" /> Data Science
+                  </label>
+                  <label class="flex items-center gap-2 text-sm text-secondary">
+                    <input type="checkbox" class="category-checkbox" value="Design" /> Design
+                  </label>
+                  <label class="flex items-center gap-2 text-sm text-secondary">
+                    <input type="checkbox" class="category-checkbox" value="Marketing" /> Marketing
+                  </label>
+                  <label class="flex items-center gap-2 text-sm text-secondary">
+                    <input type="checkbox" class="category-checkbox" value="Product" /> Product Management
+                  </label>
+                  <label class="flex items-center gap-2 text-sm text-secondary">
+                    <input type="checkbox" class="category-checkbox" value="Security" /> Cybersecurity
+                  </label>
+                </div>
+              </div>
+
+            </form>
+          </div>
+        </aside>
+
+        <!-- Right Pane: Listings Display -->
+        <section class="col-span-3 reveal">
+          <!-- Sorting & Count Header -->
+          <div class="flex justify-between items-center mb-6 bg-black-opacity-5 p-4" style="border-radius:8px; background: rgba(0,0,0,0.02); border: 1px solid var(--border-light);">
+            <div class="text-sm text-secondary" id="results-count">Scanning forests...</div>
+            
+            <div class="flex items-center gap-2 text-sm">
+              <span class="text-tertiary">Sort By:</span>
+              <select class="form-input" id="sort-order" style="margin:0; padding: var(--space-1) var(--space-4); font-size:var(--text-xs); height:auto; width:auto;">
+                <option value="newest">Newest First</option>
+                <option value="salary-high">Salary: High to Low</option>
+                <option value="salary-low">Salary: Low to High</option>
+                <option value="applicants">Least Applied</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Listings Card Container -->
+          <div class="grid grid-cols-2 gap-6" id="jobs-results-grid">
+            <!-- Rendered dynamically -->
+          </div>
+        </section>
+
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Script Modules -->
+  <script src="../js/data.js"></script>
+  <script src="../js/components.js"></script>
+  <script src="../js/search.js"></script>
+  <script src="../js/app.js"></script>
+  
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      Components.renderNavbar('jobs');
+      App.init('jobs');
+      Search.init();
+      Components.renderFooter('jobs');
+    });
+  </script>
+</body>
+</html>

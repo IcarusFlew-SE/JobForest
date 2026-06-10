@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Log In — JobForest 🌲</title>
+  
+  <!-- Typography & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- CSS Stylesheets -->
+  <link rel="stylesheet" href="../css/design-system.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/layouts.css">
+  <link rel="stylesheet" href="../css/pages.css">
+</head>
+<body class="theme-dark">
+
+  <main class="page-container" style="padding-top: 80px; min-height: 100vh; display: flex; align-items: center; justify-content: center;">
+    <div class="container" style="max-width: 900px;">
+      <div class="grid grid-cols-2 gap-8 glass-card" style="padding: 0; border-radius: 16px; overflow: hidden; border: 1px solid var(--border-light);">
+        
+        <!-- Left Panel (Illustration) -->
+        <div class="hide-mobile" style="background: linear-gradient(135deg, var(--color-primary-dark) 0%, #053b2e 100%); padding: var(--space-12); display: flex; flex-direction: column; justify-content: space-between; position: relative;">
+          <div>
+            <div class="navbar-brand" style="margin-bottom: var(--space-8); color: #fff;">
+              <span class="logo-icon">🌲</span>
+              <span style="font-weight: 700;">JobForest</span>
+            </div>
+            <h2 style="color: #fff; font-size: 2.2rem; font-family: 'Outfit', sans-serif; font-weight: 800; line-height: 1.2; margin-bottom: var(--space-4);">
+              Grow Your Career <br />With Confidence
+            </h2>
+            <p style="color: rgba(255, 255, 255, 0.7); line-height: 1.6; font-size: var(--text-md);">
+              Access your personalized candidate dashboard, edit your living portfolio, check search metrics, and review recruiter messages.
+            </p>
+          </div>
+          
+          <div style="background: rgba(255,255,255,0.06); padding: var(--space-4); border-radius: 8px; border: 1px solid rgba(255,255,255,0.1);">
+            <p style="color: #fff; font-size: var(--text-xs); line-height: 1.4; margin: 0; font-style: italic;">
+              "Logging in and having my dashboard update with tailored skills recommendations made my job hunt so much more structured." <br />
+              <strong style="color: var(--color-secondary); font-style: normal;">— Priya Sharma, UX Designer</strong>
+            </p>
+          </div>
+          
+          <div style="position: absolute; left: -10px; bottom: 10%; opacity: 0.05; font-size: 10rem; pointer-events: none;">🌿</div>
+        </div>
+
+        <!-- Right Panel (Form) -->
+        <div style="padding: var(--space-10); display: flex; flex-direction: column; justify-content: center;">
+          <h2 style="font-family: 'Outfit', sans-serif; font-weight: 700; margin-bottom: 2px;">Log In</h2>
+          <p class="text-sm text-secondary mb-6">Need a JobForest account? <a href="signup.html" class="text-primary font-semibold">Sign Up</a></p>
+
+          <form id="login-form" novalidate>
+            <div class="form-group">
+              <label class="form-label">Email Address</label>
+              <input type="email" class="form-input" name="email" placeholder="alex@email.com" required />
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Password</label>
+              <input type="password" class="form-input" name="password" placeholder="••••••••" required />
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-block mt-4">Log In</button>
+          </form>
+
+          <!-- Quick Access Divider -->
+          <div class="flex items-center gap-3 my-6">
+            <hr style="flex:1; border-color:var(--border-light);" />
+            <span class="text-xs text-tertiary uppercase">Quick Demo Login</span>
+            <hr style="flex:1; border-color:var(--border-light);" />
+          </div>
+
+          <!-- Quick Logins -->
+          <div class="flex flex-col gap-2">
+            <button class="btn btn-secondary btn-sm btn-block" data-quick-login="u1">
+              👤 Candidate: Alex Rivera (Frontend)
+            </button>
+            <button class="btn btn-secondary btn-sm btn-block" data-quick-login="e1">
+              💼 Employer: Sarah Chen (TechNova)
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- Script Modules -->
+  <script src="../js/data.js"></script>
+  <script src="../js/components.js"></script>
+  <script src="../js/auth.js"></script>
+  <script src="../js/app.js"></script>
+  
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      Components.renderNavbar('login');
+      App.init('login');
+      Auth.initLogin();
+      Components.renderFooter('login');
+    });
+  </script>
+</body>
+</html>
