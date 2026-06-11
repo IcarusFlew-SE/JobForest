@@ -7,10 +7,6 @@
           Components.showToast('Message', 'success')
           Components.showModal('Title', '<p>Body</p>')
    ============================================================ */
-
-'use strict';
-
-/** @module Components */
 const Components = (() => {
 
   /* ── NAVBAR ─────────────────────────────────────────────── */
