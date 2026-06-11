@@ -143,10 +143,10 @@ const Dashboard = (() => {
       </div>
 
       <div class="grid grid-cols-2 lg:grid-cols-4 gap-6 mb-8 reveal" role="region" aria-label="Dashboard statistics">
-        ${Components.renderStatCard('apps', apps.length, 'Applications Sent', '', 'success')}
-        ${Components.renderStatCard('interview', interviewCount, 'Interviews Scheduled', interviewCount > 0 ? '+1 this week' : '', 'warning')}
-        ${Components.renderStatCard('saved', savedJobs.length, 'Saved Opportunities', '', 'info')}
-        ${Components.renderStatCard('match', Math.round(topMatch), 'Top Match Score', 'Add skills to increase', 'brand')}
+        ${Components.renderStatCard('apps', apps.length, 'Applications', '', 'success')}
+        ${Components.renderStatCard('interview', interviewCount, 'Interviews', interviewCount > 0 ? '+1 this week' : '', 'warning')}
+        ${Components.renderStatCard('saved', savedJobs.length, 'Saved Jobs', '', 'info')}
+        ${Components.renderStatCard('match', Math.round(topMatch) + '%', 'Match Score', '', 'brand')}
       </div>
 
       <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 reveal">
@@ -422,10 +422,10 @@ const Dashboard = (() => {
       </div>
 
       <div class="grid grid-cols-2 lg:grid-cols-4 gap-6 mb-8 reveal" role="region" aria-label="Employer statistics">
-        ${Components.renderStatCard('posts', activePosts, 'Active Job Posts', '', 'success')}
-        ${Components.renderStatCard('candidates', allApps.length, 'Total Candidates', '', 'info')}
-        ${Components.renderStatCard('interview', interviewCount, 'Scheduled Interviews', '', 'warning')}
-        ${Components.renderStatCard('rate', hireRate, 'Offer Accept Rate', '', 'brand')}
+        ${Components.renderStatCard('posts', activePosts, 'Active Posts', '', 'success')}
+        ${Components.renderStatCard('candidates', allApps.length, 'Candidates', '', 'info')}
+        ${Components.renderStatCard('interview', interviewCount, 'Interviews', '', 'warning')}
+        ${Components.renderStatCard('rate', hireRate + '%', 'Offer Rate', '', 'brand')}
       </div>
 
       <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 reveal">

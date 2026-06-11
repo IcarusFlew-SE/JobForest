@@ -45,42 +45,42 @@ const Components = (() => {
 
         <!-- Logo -->
         <a href="${homePath}index.html" class="navbar-brand" aria-label="JobForest home">
-          <span class="logo-icon" aria-hidden="true">🌲</span>
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="logo-icon" aria-hidden="true"><path d="M3 21h18"/><path d="M5 21V9l7-6 7 6v12"/><path d="M9 21V15h6v6"/></svg>
           <span>JobForest</span>
         </a>
 
         <!-- Desktop nav links -->
         <div class="navbar-links" id="nav-links" role="navigation">
-          <a href="${basePath}jobs.html"
-             class="${currentPage === 'jobs' ? 'active' : ''}">
+          <a href="${basePath}jobs.html" class="${currentPage === 'jobs' ? 'active' : ''}">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="14" x="2" y="7" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
             Find Jobs
           </a>
 
           ${isEmployer
-            ? `<a href="${basePath}employer-dashboard.html"
-                  class="${currentPage === 'employer-dashboard' ? 'active' : ''}">
+            ? `<a href="${basePath}employer-dashboard.html" class="${currentPage === 'employer-dashboard' ? 'active' : ''}">
+                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/></svg>
                  Dashboard
                </a>`
-            : `<a href="${basePath}candidate-dashboard.html"
-                  class="${currentPage === 'candidate-dashboard' ? 'active' : ''}">
+            : `<a href="${basePath}candidate-dashboard.html" class="${currentPage === 'candidate-dashboard' ? 'active' : ''}">
+                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/></svg>
                  Dashboard
                </a>`
           }
 
           ${!isEmployer
-            ? `<a href="${basePath}job-matching.html"
-                  class="${currentPage === 'matching' ? 'active' : ''}">
+            ? `<a href="${basePath}job-matching.html" class="${currentPage === 'matching' ? 'active' : ''}">
+                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
                  Job Match
                </a>
-               <a href="${basePath}profile.html"
-                  class="${currentPage === 'profile' ? 'active' : ''}">
+               <a href="${basePath}profile.html" class="${currentPage === 'profile' ? 'active' : ''}">
+                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M6 20v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2"/></svg>
                  Profile
                </a>`
             : ''
           }
 
-          <a href="${basePath}living-portfolio.html"
-             class="${currentPage === 'portfolio' ? 'active' : ''}">
+          <a href="${basePath}living-portfolio.html" class="${currentPage === 'portfolio' ? 'active' : ''}">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
             Portfolio
           </a>
         </div>
@@ -90,7 +90,7 @@ const Components = (() => {
 
           <!-- Search (desktop only) -->
           <div class="navbar-search hide-mobile" aria-label="Search jobs">
-            <span class="search-icon" aria-hidden="true">🔍</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="search-icon" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
             <input
               type="search"
               id="nav-search-input"
@@ -101,56 +101,38 @@ const Components = (() => {
           </div>
 
           <!-- Theme toggle -->
-          <button
-            class="theme-toggle"
-            id="theme-toggle"
-            aria-label="Toggle dark/light theme"
-            title="Toggle theme"
-          >
-            <span id="theme-icon" aria-hidden="true">🌙</span>
+          <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark/light theme" title="Toggle theme">
+            <span id="theme-icon" aria-hidden="true">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+            </span>
           </button>
 
           <!-- Auth: logged in -->
           ${isLoggedIn
             ? `<div class="dropdown" id="user-dropdown">
-                 <div
-                   class="navbar-avatar"
-                   id="nav-avatar"
-                   role="button"
-                   tabindex="0"
-                   aria-haspopup="true"
-                   aria-expanded="false"
-                   aria-label="User menu for ${user.firstName}"
-                 >
-                   ${user.avatar || user.firstName?.[0] || 'U'}
+                 <div class="navbar-avatar" id="nav-avatar" role="button" tabindex="0" aria-haspopup="true" aria-expanded="false" aria-label="User menu for ${user.firstName}">
+                   ${user.firstName?.[0] || 'U'}
                  </div>
                  <div class="dropdown-menu" id="user-dropdown-menu" role="menu">
                    <div style="padding:var(--space-3);border-bottom:1px solid var(--border-subtle);">
-                     <div style="font-weight:var(--fw-semibold);font-size:var(--text-sm);">
-                       ${user.firstName} ${user.lastName}
-                     </div>
-                     <div style="font-size:var(--text-xs);color:var(--text-tertiary);">
-                       ${user.email}
-                     </div>
+                     <div style="font-weight:var(--fw-semibold);font-size:var(--text-sm);">${user.firstName} ${user.lastName}</div>
+                     <div style="font-size:var(--text-xs);color:var(--text-tertiary);">${user.email}</div>
                    </div>
                    ${!isEmployer
                      ? `<a class="dropdown-item" href="${basePath}profile.html" role="menuitem">
-                          👤 My Profile
+                          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M6 20v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2"/></svg>
+                          My Profile
                         </a>`
                      : ''
                    }
-                   <a class="dropdown-item"
-                      href="${basePath}${isEmployer ? 'employer-dashboard.html' : 'candidate-dashboard.html'}"
-                      role="menuitem">
-                     📊 Dashboard
+                   <a class="dropdown-item" href="${basePath}${isEmployer ? 'employer-dashboard.html' : 'candidate-dashboard.html'}" role="menuitem">
+                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/></svg>
+                     Dashboard
                    </a>
                    <div class="dropdown-divider"></div>
-                   <a class="dropdown-item"
-                      id="logout-btn"
-                      href="#"
-                      role="menuitem"
-                      style="color:var(--color-error);">
-                     🚪 Sign Out
+                   <a class="dropdown-item" id="logout-btn" href="#" role="menuitem" style="color:var(--error-500);">
+                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+                     Sign Out
                    </a>
                  </div>
                </div>`
@@ -159,14 +141,8 @@ const Components = (() => {
           }
 
           <!-- Mobile hamburger -->
-          <button
-            class="navbar-hamburger show-mobile"
-            id="nav-hamburger"
-            aria-label="Open navigation menu"
-            aria-expanded="false"
-            aria-controls="nav-links"
-          >
-            ☰
+          <button class="navbar-hamburger show-mobile" id="nav-hamburger" aria-label="Open navigation menu" aria-expanded="false" aria-controls="nav-links">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" id="hamburger-icon"><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
           </button>
         </div>
       </div>
@@ -183,7 +159,12 @@ const Components = (() => {
       hamburger.addEventListener('click', () => {
         const isOpen = navLinks.classList.toggle('mobile-open');
         hamburger.setAttribute('aria-expanded', String(isOpen));
-        hamburger.textContent = isOpen ? '✕' : '☰';
+        const iconEl = document.getElementById('hamburger-icon');
+        if (iconEl) {
+          iconEl.innerHTML = isOpen
+            ? '<line x1="18" x2="6" y1="6" y2="18"/><line x1="6" x2="18" y1="6" y2="18"/>'
+            : '<line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="18" y2="18"/>';
+        }
       });
     }
 
