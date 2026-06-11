@@ -23,29 +23,29 @@ const Profile = (() => {
     const sidebarCard = document.getElementById('profile-sidebar-card');
     if (sidebarCard) {
       sidebarCard.innerHTML = `
-        <div class="avatar avatar-2xl" style="margin: 0 auto var(--space-4);">${user.avatar || 'U'}</div>
+        <div class="avatar avatar-2xl" style="margin: 0 auto var(--space-4);">${user.avatar || user.firstName[0]}</div>
         <h3>${user.firstName} ${user.lastName}</h3>
         <p class="title">${user.title || 'Add your title'}</p>
-        <p class="location">📍 ${user.location || 'Add location'}</p>
+        <p class="location">${user.location || 'Add location'}</p>
         <div style="margin: var(--space-6) 0;">
-          <div class="progress-ring" id="completion-ring">
+          <div class="progress-circular" id="completion-ring" role="progressbar" aria-valuenow="${user.profileCompletion || 0}" aria-valuemin="0" aria-valuemax="100" aria-label="Profile completion">
             <svg width="120" height="120" viewBox="0 0 120 120">
-              <circle class="progress-ring-track" cx="60" cy="60" r="52"/>
-              <circle class="progress-ring-fill" cx="60" cy="60" r="52"
+              <circle class="progress-circular-track" cx="60" cy="60" r="52"/>
+              <circle class="progress-circular-fill" cx="60" cy="60" r="52"
                 stroke-dasharray="326.73"
                 stroke-dashoffset="${326.73 * (1 - (user.profileCompletion || 0) / 100)}"/>
             </svg>
-            <div class="progress-ring-text">
-              <span class="progress-ring-value">${user.profileCompletion || 0}%</span>
-              <span class="progress-ring-label">Complete</span>
+            <div class="progress-circular-text">
+              <span class="progress-circular-value">${user.profileCompletion || 0}%</span>
+              <span class="progress-circular-label">Complete</span>
             </div>
           </div>
         </div>
         <div class="flex flex-col gap-2" style="margin-top: var(--space-4);">
-          <button class="btn btn-primary btn-block btn-sm" id="download-resume-btn">📄 Download Resume</button>
+          <button class="btn btn-primary btn-block btn-sm" id="download-resume-btn">Download Resume</button>
           <div class="flex items-center justify-center gap-2 mt-2">
             <span class="text-sm text-secondary">Profile Visibility:</span>
-            <div class="toggle-switch ${user.visibility === 'public' ? 'active' : ''}" id="visibility-toggle">
+            <div class="toggle-switch ${user.visibility === 'public' ? 'active' : ''}" id="visibility-toggle" role="switch" aria-checked="${user.visibility === 'public'}" tabindex="0">
               <div class="toggle-track"></div>
             </div>
             <span class="text-sm" id="visibility-label">${user.visibility === 'public' ? 'Public' : 'Private'}</span>
@@ -81,13 +81,13 @@ const Profile = (() => {
     section.innerHTML = `
       <div class="profile-section-header">
         <h3>${title}</h3>
-        <button class="edit-btn" data-edit="${id}">✏️ Edit</button>
+        <button class="edit-btn" data-edit="${id}" aria-label="Edit ${title}">Edit</button>
       </div>
       <div id="${id}-display">
         <p class="text-secondary" style="line-height: var(--leading-relaxed);">${content || '<em class="text-tertiary">Not provided yet</em>'}</p>
       </div>
       <div id="${id}-edit" class="hidden">
-        <textarea class="form-textarea" id="${id}-input" rows="4">${content || ''}</textarea>
+        <textarea class="form-textarea" id="${id}-input" rows="4" aria-label="${title}">${content || ''}</textarea>
         <div class="flex gap-3 mt-4">
           <button class="btn btn-primary btn-sm" data-save="${id}">Save</button>
           <button class="btn btn-ghost btn-sm" data-cancel="${id}">Cancel</button>
@@ -108,7 +108,7 @@ const Profile = (() => {
     section.innerHTML = `
       <div class="profile-section-header">
         <h3>Skills</h3>
-        <button class="edit-btn" data-edit="skills">✏️ Edit</button>
+        <button class="edit-btn" data-edit="skills" aria-label="Edit skills">Edit</button>
       </div>
       <div id="skills-display">
         <div class="flex flex-wrap gap-2">
@@ -117,10 +117,10 @@ const Profile = (() => {
       </div>
       <div id="skills-edit" class="hidden">
         <div class="skill-input-wrapper" id="skill-input-wrapper">
-          ${(user.skills || []).map(s => `<span class="tag tag-primary tag-removable" data-skill="${s}">${s} <span class="tag-remove">✕</span></span>`).join('')}
-          <input type="text" placeholder="Type a skill and press Enter..." id="skill-input" />
+          ${(user.skills || []).map(s => `<span class="tag tag-primary tag-removable" data-skill="${s}">${s} <span class="tag-remove" role="button" aria-label="Remove ${s}">Remove</span></span>`).join('')}
+          <input type="text" placeholder="Type a skill and press Enter..." id="skill-input" aria-label="Add a skill" />
         </div>
-        <p class="form-hint mt-2">Press Enter to add a skill. Click ✕ to remove.</p>
+        <p class="form-hint mt-2">Press Enter to add a skill. Click the remove button to delete.</p>
         <div class="flex gap-3 mt-4">
           <button class="btn btn-primary btn-sm" data-save="skills">Save</button>
           <button class="btn btn-ghost btn-sm" data-cancel="skills">Cancel</button>
@@ -146,7 +146,7 @@ const Profile = (() => {
     section.innerHTML = `
       <div class="profile-section-header">
         <h3>Work Experience</h3>
-        <button class="edit-btn" data-edit="experience">+ Add Experience</button>
+        <button class="edit-btn" data-edit="experience" aria-label="Add experience">Add Experience</button>
       </div>
       <div id="experience-display">
         ${entries || '<em class="text-tertiary text-sm">Add your work experience</em>'}
@@ -202,7 +202,7 @@ const Profile = (() => {
     section.innerHTML = `
       <div class="profile-section-header">
         <h3>Education</h3>
-        <button class="edit-btn" data-edit="education">+ Add Education</button>
+        <button class="edit-btn" data-edit="education" aria-label="Add education">Add Education</button>
       </div>
       <div id="education-display">${entries || '<em class="text-tertiary text-sm">Add your education</em>'}</div>
       <div id="education-edit" class="hidden">
@@ -231,12 +231,12 @@ const Profile = (() => {
     const section = document.getElementById('section-certifications');
     if (!section) return;
 
-    const items = (user.certifications || []).map(c => `<li style="padding: var(--space-2) 0; display: flex; align-items: center; gap: var(--space-2);"><span style="color: var(--color-accent);">🏆</span> ${c}</li>`).join('');
+    const items = (user.certifications || []).map(c => `<li style="padding: var(--space-2) 0; display: flex; align-items: center; gap: var(--space-2);"><span style="color: var(--warning-500);">Award</span> ${c}</li>`).join('');
 
     section.innerHTML = `
       <div class="profile-section-header">
         <h3>Certifications & Awards</h3>
-        <button class="edit-btn" data-edit="certifications">+ Add</button>
+        <button class="edit-btn" data-edit="certifications" aria-label="Add certification">Add</button>
       </div>
       <div id="certifications-display">
         <ul>${items || '<em class="text-tertiary text-sm">Add your certifications</em>'}</ul>
@@ -264,7 +264,7 @@ const Profile = (() => {
     section.innerHTML = `
       <div class="profile-section-header">
         <h3>Portfolio & Links</h3>
-        <button class="edit-btn" data-edit="portfolio">+ Add Link</button>
+        <button class="edit-btn" data-edit="portfolio" aria-label="Add portfolio link">Add Link</button>
       </div>
       <div id="portfolio-display">
         <ul>${links || '<em class="text-tertiary text-sm">Add portfolio links</em>'}</ul>
@@ -395,13 +395,21 @@ const Profile = (() => {
     // Visibility toggle
     const visToggle = document.getElementById('visibility-toggle');
     if (visToggle) {
-      visToggle.addEventListener('click', () => {
+      const toggleVisibility = () => {
         visToggle.classList.toggle('active');
         user.visibility = visToggle.classList.contains('active') ? 'public' : 'private';
+        visToggle.setAttribute('aria-checked', user.visibility === 'public');
         const label = document.getElementById('visibility-label');
         if (label) label.textContent = user.visibility === 'public' ? 'Public' : 'Private';
         JobForestData.setCurrentUser(user);
         Components.showToast(`Profile is now ${user.visibility}`, 'info');
+      };
+      visToggle.addEventListener('click', toggleVisibility);
+      visToggle.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          toggleVisibility();
+        }
       });
     }
 

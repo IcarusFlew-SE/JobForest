@@ -3,59 +3,63 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Browse Jobs — JobForest 🌲</title>
-  
+  <meta name="description" content="Browse and search job listings on JobForest. Filter by location, salary, job type, and more.">
+  <title>Browse Jobs — JobForest</title>
+
   <!-- Typography & Icons -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  
+
   <!-- CSS Stylesheets -->
   <link rel="stylesheet" href="../css/design-system.css">
   <link rel="stylesheet" href="../css/components.css">
   <link rel="stylesheet" href="../css/layouts.css">
   <link rel="stylesheet" href="../css/pages.css">
 </head>
-<body class="theme-dark">
+<body class="theme-dark jobs-page">
 
-  <main class="page-container" style="padding-top: 80px;">
+  <!-- Skip to main content link for accessibility -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <main id="main-content" class="page-container" style="padding-top: 80px;">
     <div class="container py-8">
-      
-      <div class="grid grid-cols-4 gap-8">
-        
+
+      <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
+
         <!-- Left Sidebar: Filter Form -->
-        <aside class="col-span-1 reveal">
+        <aside class="lg:col-span-1 reveal">
           <div class="card glass-card sticky" style="top: 100px; padding: var(--space-5);">
             <div class="flex justify-between items-center mb-6">
-              <h3 style="font-size:var(--text-lg); margin:0;">Filter Search</h3>
-              <button class="btn btn-ghost btn-xs" id="clear-filters" style="color: var(--color-error);">Clear All</button>
+              <h2 style="font-size:var(--text-lg); margin:0;">Filter Search</h2>
+              <button class="btn btn-ghost btn-xs" id="clear-filters" style="color: var(--error-500);">Clear All</button>
             </div>
 
-            <form id="filter-form">
+            <form id="filter-form" aria-label="Job search filters">
               <!-- Keyword -->
               <div class="form-group">
-                <label class="form-label">Search Keyword</label>
+                <label class="form-label" for="search-keyword">Search Keyword</label>
                 <input type="text" class="form-input" id="search-keyword" placeholder="Title, company, skills..." />
               </div>
 
               <!-- Location -->
               <div class="form-group">
-                <label class="form-label">Location</label>
+                <label class="form-label" for="search-location">Location</label>
                 <input type="text" class="form-input" id="search-location" placeholder="e.g. Seattle, WA" />
               </div>
 
               <!-- Salary Slider -->
               <div class="form-group">
                 <div class="flex justify-between items-center mb-1">
-                  <label class="form-label" style="margin:0;">Min Salary</label>
-                  <span class="text-xs text-primary font-semibold" id="salary-display">$40K</span>
+                  <label class="form-label" for="salary-range" style="margin:0;">Min Salary</label>
+                  <span class="text-xs font-semibold" id="salary-display" style="color: var(--brand-500);" aria-live="polite">$40K</span>
                 </div>
-                <input type="range" class="form-input" style="padding:0; accent-color: var(--color-primary);" id="salary-range" min="40000" max="200000" step="10000" value="40000" />
+                <input type="range" class="range-slider" id="salary-range" min="40000" max="200000" step="10000" value="40000" aria-valuemin="40000" aria-valuemax="200000" aria-valuenow="40000" />
               </div>
 
               <!-- Job Type -->
-              <div class="form-group">
-                <label class="form-label">Job Type</label>
+              <fieldset class="form-group">
+                <legend class="form-label">Job Type</legend>
                 <div class="flex flex-col gap-2">
                   <label class="flex items-center gap-2 text-sm text-secondary">
                     <input type="checkbox" class="type-checkbox" data-filter-type="type" value="Full-time" /> Full-Time
@@ -70,11 +74,11 @@
                     <input type="checkbox" class="type-checkbox" data-filter-type="type" value="Internship" /> Internship
                   </label>
                 </div>
-              </div>
+              </fieldset>
 
               <!-- Work Mode -->
-              <div class="form-group">
-                <label class="form-label">Work Setting</label>
+              <fieldset class="form-group">
+                <legend class="form-label">Work Setting</legend>
                 <div class="flex flex-col gap-2">
                   <label class="flex items-center gap-2 text-sm text-secondary">
                     <input type="checkbox" class="workmode-checkbox" data-filter-type="workMode" value="Remote" /> Remote
@@ -86,11 +90,11 @@
                     <input type="checkbox" class="workmode-checkbox" data-filter-type="workMode" value="Onsite" /> Onsite
                   </label>
                 </div>
-              </div>
+              </fieldset>
 
               <!-- Experience Tier -->
-              <div class="form-group">
-                <label class="form-label">Experience Tier</label>
+              <fieldset class="form-group">
+                <legend class="form-label">Experience Tier</legend>
                 <div class="flex flex-col gap-2">
                   <label class="flex items-center gap-2 text-sm text-secondary">
                     <input type="checkbox" class="experience-checkbox" data-filter-type="experience" value="Entry" /> Entry Level
@@ -105,11 +109,11 @@
                     <input type="checkbox" class="experience-checkbox" data-filter-type="experience" value="Executive" /> Executive
                   </label>
                 </div>
-              </div>
+              </fieldset>
 
               <!-- Category -->
-              <div class="form-group">
-                <label class="form-label">Category</label>
+              <fieldset class="form-group">
+                <legend class="form-label">Category</legend>
                 <div class="flex flex-col gap-2">
                   <label class="flex items-center gap-2 text-sm text-secondary">
                     <input type="checkbox" class="category-checkbox" data-filter-type="category" value="Engineering" /> Engineering
@@ -130,20 +134,20 @@
                     <input type="checkbox" class="category-checkbox" data-filter-type="category" value="Security" /> Cybersecurity
                   </label>
                 </div>
-              </div>
+              </fieldset>
 
             </form>
           </div>
         </aside>
 
         <!-- Right Pane: Listings Display -->
-        <section class="col-span-3 reveal">
+        <section class="lg:col-span-3 reveal" aria-labelledby="results-heading">
           <!-- Sorting & Count Header -->
-          <div class="flex justify-between items-center mb-6 bg-black-opacity-5 p-4" style="border-radius:8px; background: rgba(0,0,0,0.02); border: 1px solid var(--border-light);">
-            <div class="text-sm text-secondary" id="results-count">Scanning forests...</div>
-            
+          <div class="flex justify-between items-center mb-6 p-4" style="border-radius:8px; background: rgba(0,0,0,0.02); border: 1px solid var(--border-light);">
+            <div class="text-sm text-secondary" id="results-count" aria-live="polite">Loading jobs...</div>
+
             <div class="flex items-center gap-2 text-sm">
-              <span class="text-tertiary">Sort By:</span>
+              <label for="sort-select" class="text-tertiary">Sort By:</label>
               <select class="form-input" id="sort-select" style="margin:0; padding: var(--space-1) var(--space-4); font-size:var(--text-xs); height:auto; width:auto;">
                 <option value="newest">Newest First</option>
                 <option value="salary-high">Salary: High to Low</option>
@@ -153,8 +157,10 @@
             </div>
           </div>
 
+          <h2 id="results-heading" class="sr-only">Job Listings</h2>
+
           <!-- Listings Card Container -->
-          <div class="grid grid-cols-2 gap-6" id="jobs-results">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6" id="jobs-results" role="list" aria-label="Job search results">
             <!-- Rendered dynamically -->
           </div>
         </section>
