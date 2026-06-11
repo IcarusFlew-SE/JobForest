@@ -1,59 +1,102 @@
-// ============================================
-// JOBFOREST — GLOBAL APP LOGIC
-// Theme toggle, navigation, scroll animations
-// ============================================
+/* JOBFOREST APP MODULE
+   Global application initialisation.
+   Handles: theme, scroll animations, counter animation,
+            smooth scroll, navbar scroll shadow, URL params.
+   
+   USAGE: Call App.init('page-name') on DOMContentLoaded.
+   ============================================================ */
 
+/** @module App */
 const App = (() => {
 
-  // ─── THEME MANAGEMENT ─────────────────────────
+  /* ── THEME ─────────────────────────────────────────────────*/
+
+  /**
+   * Load the saved theme from localStorage and apply it.
+   * Falls back to 'dark' if nothing is saved.
+   * @returns {void}
+   */
   function initTheme() {
     const saved = localStorage.getItem('jf_theme') || 'dark';
     document.documentElement.setAttribute('data-theme', saved);
-    updateThemeIcon(saved);
+    _updateThemeIcon(saved);
   }
 
+  /**
+   * Toggle between dark and light themes, saving the preference.
+   * @returns {void}
+   */
   function toggleTheme() {
     const current = document.documentElement.getAttribute('data-theme');
     const next = current === 'dark' ? 'light' : 'dark';
     document.documentElement.setAttribute('data-theme', next);
     localStorage.setItem('jf_theme', next);
-    updateThemeIcon(next);
+    _updateThemeIcon(next);
   }
 
-  function updateThemeIcon(theme) {
+  /**
+   * Update the theme toggle button's icon to match the active theme.
+   * @private
+   * @param {string} theme - 'dark' | 'light'
+   */
+  function _updateThemeIcon(theme) {
     const icon = document.getElementById('theme-icon');
-    if (icon) {
-      icon.textContent = theme === 'dark' ? '☀️' : '🌙';
-    }
+    if (icon) icon.textContent = theme === 'dark' ? '☀️' : '🌙';
   }
 
-  // ─── SCROLL ANIMATIONS (Intersection Observer) ─
+  /* ── SCROLL ANIMATIONS ─────────────────────────────────────*/
+
+  /**
+   * Watch all elements with class `.reveal` using IntersectionObserver.
+   * Adds `.revealed` when an element enters the viewport,
+   * which triggers the CSS fade-in-up transition.
+   * @returns {void}
+   */
   function initScrollAnimations() {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('revealed');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+    // IntersectionObserver watches elements without blocking the main thread
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('revealed');
+            observer.unobserve(entry.target); // Only animate once
+          }
+        });
+      },
+      {
+        threshold: 0.1,           // Trigger when 10% visible
+        rootMargin: '0px 0px -40px 0px', // Trigger slightly before bottom of viewport
+      }
+    );
 
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
   }
 
-  // ─── ANIMATED COUNTERS ────────────────────────
-  function animateCounters() {
-    const counters = document.querySelectorAll('[data-counter]');
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const el = entry.target;
-          const target = parseInt(el.getAttribute('data-counter'));
-          const suffix = el.getAttribute('data-suffix') || '';
-          const prefix = el.getAttribute('data-prefix') || '';
-          const duration = 2000;
-          const step = target / (duration / 16);
-          let current = 0;
+  /* ── ANIMATED COUNTERS ─────────────────────────────────────*/
+
+  /**
+   * Animate number counters from 0 to their target value.
+   * Triggered when the element enters the viewport.
+   * 
+   * HTML usage:
+   *   <span data-counter="1240" data-suffix="+">0</span>
+   * 
+   * @returns {void}
+   */
+  function initCounters() {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach(entry => {
+          if (!entry.isIntersecting) return;
+
+          const el      = entry.target;
+          const target  = parseInt(el.getAttribute('data-counter'), 10);
+          const suffix  = el.getAttribute('data-suffix') || '';
+          const prefix  = el.getAttribute('data-prefix') || '';
+          const duration = 1800; // ms
+          const fps      = 60;
+          const step     = target / (duration / (1000 / fps));
+          let   current  = 0;
 
           const timer = setInterval(() => {
             current += step;
@@ -62,22 +105,30 @@ const App = (() => {
               clearInterval(timer);
             }
             el.textContent = prefix + Math.floor(current).toLocaleString() + suffix;
-          }, 16);
+          }, 1000 / fps);
 
           observer.unobserve(el);
-        }
-      });
-    }, { threshold: 0.3 });
+        });
+      },
+      { threshold: 0.4 }
+    );
 
-    counters.forEach(el => observer.observe(el));
+    document.querySelectorAll('[data-counter]').forEach(el => observer.observe(el));
   }
 
-  // ─── SMOOTH SCROLL FOR ANCHOR LINKS ───────────
+  /* ── SMOOTH SCROLL ─────────────────────────────────────────*/
+
+  /**
+   * Intercept clicks on anchor links (`href="#section"`) and
+   * smooth-scroll to the target element instead of jumping.
+   * @returns {void}
+   */
   function initSmoothScroll() {
     document.querySelectorAll('a[href^="#"]').forEach(link => {
       link.addEventListener('click', (e) => {
         const targetId = link.getAttribute('href');
         if (targetId === '#') return;
+
         const target = document.querySelector(targetId);
         if (target) {
           e.preventDefault();
@@ -87,50 +138,91 @@ const App = (() => {
     });
   }
 
-  // ─── NAVBAR SCROLL EFFECT ─────────────────────
+  /* ── NAVBAR SCROLL SHADOW ──────────────────────────────────*/
+
+  /**
+   * Add a shadow to the navbar when the user scrolls down.
+   * Uses a CSS class `.scrolled` to trigger the shadow via CSS.
+   * @returns {void}
+   */
   function initNavbarScroll() {
     const navbar = document.getElementById('main-navbar');
     if (!navbar) return;
 
+    // Use a passive event listener for scroll — better performance on mobile
     window.addEventListener('scroll', () => {
-      if (window.scrollY > 50) {
-        navbar.style.boxShadow = 'var(--shadow-lg)';
-      } else {
-        navbar.style.boxShadow = 'var(--shadow-sm)';
-      }
+      navbar.classList.toggle('scrolled', window.scrollY > 40);
+    }, { passive: true });
+  }
+
+  /* ── MOBILE BOTTOM NAV ─────────────────────────────────────*/
+
+  /**
+   * Sync the active state on the mobile bottom nav bar
+   * based on the current page name.
+   * @param {string} currentPage - e.g. 'candidate-dashboard'
+   * @returns {void}
+   */
+  function initBottomNav(currentPage) {
+    const items = document.querySelectorAll('.bottom-nav-item[data-page]');
+    items.forEach(item => {
+      item.classList.toggle('active', item.getAttribute('data-page') === currentPage);
     });
   }
 
-  // ─── PAGE INIT ────────────────────────────────
-  function init(pageName) {
+  /* ── URL PARAMS HELPER ─────────────────────────────────────*/
+
+  /**
+   * Parse the current page's URL query string into a plain object.
+   * @returns {Object.<string, string>}
+   *
+   * @example
+   * // URL: /pages/jobs.html?q=react&mode=remote
+   * App.getUrlParams() // { q: 'react', mode: 'remote' }
+   */
+  function getUrlParams() {
+    return Object.fromEntries(new URLSearchParams(globalThis.location.search));
+  }
+
+  /* ── INIT ──────────────────────────────────────────────────*/
+
+  /**
+   * Main entry point — call this on DOMContentLoaded.
+   * Wires up all global behaviours.
+   * @param {string} [pageName=''] - The current page identifier
+   * @returns {void}
+   *
+   * @example
+   * document.addEventListener('DOMContentLoaded', () => {
+   *   App.init('candidate-dashboard');
+   * });
+   */
+  function init(pageName = '') {
     initTheme();
 
-    // Wait for DOM to be ready with navbar
+    // Wait one frame for navbar to be injected into DOM by Components.renderNavbar()
     requestAnimationFrame(() => {
-      // Theme toggle
-      const toggle = document.getElementById('theme-toggle');
-      if (toggle) {
-        toggle.addEventListener('click', toggleTheme);
+      const themeToggle = document.getElementById('theme-toggle');
+      if (themeToggle) {
+        themeToggle.addEventListener('click', toggleTheme);
       }
 
       initNavbarScroll();
       initSmoothScroll();
       initScrollAnimations();
-      animateCounters();
+      initCounters();
+      initBottomNav(pageName);
     });
   }
 
-  // ─── URL PARAMS HELPER ────────────────────────
-  function getUrlParams() {
-    return Object.fromEntries(new URLSearchParams(window.location.search));
-  }
-
+  /* ── PUBLIC API ────────────────────────────────────────────*/
   return {
     init,
     initTheme,
     toggleTheme,
     initScrollAnimations,
-    animateCounters,
-    getUrlParams
+    initCounters,
+    getUrlParams,
   };
+
 })();

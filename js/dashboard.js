@@ -1,4 +1,3 @@
-// ============================================
 // JOBFOREST — DASHBOARD MODULE
 // Candidate and Employer Dashboard Rendering & Interactions
 // ============================================
@@ -8,6 +7,7 @@ const Dashboard = (() => {
   let currentUser = null;
   let activeTab = 'overview';
   let activeMessageId = null;
+  const escapeHTML = Components.escapeHTML;
 
   // ─── INIT ─────────────────────────────────────
   function init() {
@@ -138,7 +138,7 @@ const Dashboard = (() => {
 
     container.innerHTML = `
       <div class="dashboard-header reveal">
-        <h2>Welcome back, ${currentUser.firstName}! 🌲</h2>
+        <h2>Welcome back, ${escapeHTML(currentUser.firstName)}! 🌲</h2>
         <p class="text-secondary">Grow your career naturally. Here is your progress today.</p>
       </div>
 

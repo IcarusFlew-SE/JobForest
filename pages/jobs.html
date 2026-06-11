@@ -28,29 +28,29 @@
           <div class="card glass-card sticky" style="top: 100px; padding: var(--space-5);">
             <div class="flex justify-between items-center mb-6">
               <h3 style="font-size:var(--text-lg); margin:0;">Filter Search</h3>
-              <button class="btn btn-ghost btn-xs" id="clear-filters-btn" style="color: var(--color-error);">Clear All</button>
+              <button class="btn btn-ghost btn-xs" id="clear-filters" style="color: var(--color-error);">Clear All</button>
             </div>
 
             <form id="filter-form">
               <!-- Keyword -->
               <div class="form-group">
                 <label class="form-label">Search Keyword</label>
-                <input type="text" class="form-input" id="search-input" placeholder="Title, company, skills..." />
+                <input type="text" class="form-input" id="search-keyword" placeholder="Title, company, skills..." />
               </div>
 
               <!-- Location -->
               <div class="form-group">
                 <label class="form-label">Location</label>
-                <input type="text" class="form-input" id="location-input" placeholder="e.g. Seattle, WA" />
+                <input type="text" class="form-input" id="search-location" placeholder="e.g. Seattle, WA" />
               </div>
 
               <!-- Salary Slider -->
               <div class="form-group">
                 <div class="flex justify-between items-center mb-1">
                   <label class="form-label" style="margin:0;">Min Salary</label>
-                  <span class="text-xs text-primary font-semibold" id="salary-val">$40K</span>
+                  <span class="text-xs text-primary font-semibold" id="salary-display">$40K</span>
                 </div>
-                <input type="range" class="form-input" style="padding:0; accent-color: var(--color-primary);" id="salary-slider" min="40000" max="200000" step="10000" value="40000" />
+                <input type="range" class="form-input" style="padding:0; accent-color: var(--color-primary);" id="salary-range" min="40000" max="200000" step="10000" value="40000" />
               </div>
 
               <!-- Job Type -->
@@ -58,16 +58,16 @@
                 <label class="form-label">Job Type</label>
                 <div class="flex flex-col gap-2">
                   <label class="flex items-center gap-2 text-sm text-secondary">
-                    <input type="checkbox" class="type-checkbox" value="Full-time" /> Full-Time
+                    <input type="checkbox" class="type-checkbox" data-filter-type="type" value="Full-time" /> Full-Time
                   </label>
                   <label class="flex items-center gap-2 text-sm text-secondary">
-                    <input type="checkbox" class="type-checkbox" value="Part-time" /> Part-Time
+                    <input type="checkbox" class="type-checkbox" data-filter-type="type" value="Part-time" /> Part-Time
                   </label>
                   <label class="flex items-center gap-2 text-sm text-secondary">
-                    <input type="checkbox" class="type-checkbox" value="Contract" /> Contract
+                    <input type="checkbox" class="type-checkbox" data-filter-type="type" value="Contract" /> Contract
                   </label>
                   <label class="flex items-center gap-2 text-sm text-secondary">
-                    <input type="checkbox" class="type-checkbox" value="Internship" /> Internship
+                    <input type="checkbox" class="type-checkbox" data-filter-type="type" value="Internship" /> Internship
                   </label>
                 </div>
               </div>
@@ -77,13 +77,13 @@
                 <label class="form-label">Work Setting</label>
                 <div class="flex flex-col gap-2">
                   <label class="flex items-center gap-2 text-sm text-secondary">
-                    <input type="checkbox" class="workmode-checkbox" value="Remote" /> Remote
+                    <input type="checkbox" class="workmode-checkbox" data-filter-type="workMode" value="Remote" /> Remote
                   </label>
                   <label class="flex items-center gap-2 text-sm text-secondary">
-                    <input type="checkbox" class="workmode-checkbox" value="Hybrid" /> Hybrid
+                    <input type="checkbox" class="workmode-checkbox" data-filter-type="workMode" value="Hybrid" /> Hybrid
                   </label>
                   <label class="flex items-center gap-2 text-sm text-secondary">
-                    <input type="checkbox" class="workmode-checkbox" value="Onsite" /> Onsite
+                    <input type="checkbox" class="workmode-checkbox" data-filter-type="workMode" value="Onsite" /> Onsite
                   </label>
                 </div>
               </div>
@@ -93,16 +93,16 @@
                 <label class="form-label">Experience Tier</label>
                 <div class="flex flex-col gap-2">
                   <label class="flex items-center gap-2 text-sm text-secondary">
-                    <input type="checkbox" class="experience-checkbox" value="Entry" /> Entry Level
+                    <input type="checkbox" class="experience-checkbox" data-filter-type="experience" value="Entry" /> Entry Level
                   </label>
                   <label class="flex items-center gap-2 text-sm text-secondary">
-                    <input type="checkbox" class="experience-checkbox" value="Mid" /> Mid Level
+                    <input type="checkbox" class="experience-checkbox" data-filter-type="experience" value="Mid" /> Mid Level
                   </label>
                   <label class="flex items-center gap-2 text-sm text-secondary">
-                    <input type="checkbox" class="experience-checkbox" value="Senior" /> Senior Level
+                    <input type="checkbox" class="experience-checkbox" data-filter-type="experience" value="Senior" /> Senior Level
                   </label>
                   <label class="flex items-center gap-2 text-sm text-secondary">
-                    <input type="checkbox" class="experience-checkbox" value="Executive" /> Executive
+                    <input type="checkbox" class="experience-checkbox" data-filter-type="experience" value="Executive" /> Executive
                   </label>
                 </div>
               </div>
@@ -112,22 +112,22 @@
                 <label class="form-label">Category</label>
                 <div class="flex flex-col gap-2">
                   <label class="flex items-center gap-2 text-sm text-secondary">
-                    <input type="checkbox" class="category-checkbox" value="Engineering" /> Engineering
+                    <input type="checkbox" class="category-checkbox" data-filter-type="category" value="Engineering" /> Engineering
                   </label>
                   <label class="flex items-center gap-2 text-sm text-secondary">
-                    <input type="checkbox" class="category-checkbox" value="Data Science" /> Data Science
+                    <input type="checkbox" class="category-checkbox" data-filter-type="category" value="Data Science" /> Data Science
                   </label>
                   <label class="flex items-center gap-2 text-sm text-secondary">
-                    <input type="checkbox" class="category-checkbox" value="Design" /> Design
+                    <input type="checkbox" class="category-checkbox" data-filter-type="category" value="Design" /> Design
                   </label>
                   <label class="flex items-center gap-2 text-sm text-secondary">
-                    <input type="checkbox" class="category-checkbox" value="Marketing" /> Marketing
+                    <input type="checkbox" class="category-checkbox" data-filter-type="category" value="Marketing" /> Marketing
                   </label>
                   <label class="flex items-center gap-2 text-sm text-secondary">
-                    <input type="checkbox" class="category-checkbox" value="Product" /> Product Management
+                    <input type="checkbox" class="category-checkbox" data-filter-type="category" value="Product" /> Product Management
                   </label>
                   <label class="flex items-center gap-2 text-sm text-secondary">
-                    <input type="checkbox" class="category-checkbox" value="Security" /> Cybersecurity
+                    <input type="checkbox" class="category-checkbox" data-filter-type="category" value="Security" /> Cybersecurity
                   </label>
                 </div>
               </div>
@@ -144,7 +144,7 @@
             
             <div class="flex items-center gap-2 text-sm">
               <span class="text-tertiary">Sort By:</span>
-              <select class="form-input" id="sort-order" style="margin:0; padding: var(--space-1) var(--space-4); font-size:var(--text-xs); height:auto; width:auto;">
+              <select class="form-input" id="sort-select" style="margin:0; padding: var(--space-1) var(--space-4); font-size:var(--text-xs); height:auto; width:auto;">
                 <option value="newest">Newest First</option>
                 <option value="salary-high">Salary: High to Low</option>
                 <option value="salary-low">Salary: Low to High</option>
@@ -154,7 +154,7 @@
           </div>
 
           <!-- Listings Card Container -->
-          <div class="grid grid-cols-2 gap-6" id="jobs-results-grid">
+          <div class="grid grid-cols-2 gap-6" id="jobs-results">
             <!-- Rendered dynamically -->
           </div>
         </section>

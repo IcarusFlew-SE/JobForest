@@ -4,15 +4,9 @@
 
 JobForest is a comprehensive job board and talent discovery engine built for speed, intelligence, and results. Going beyond traditional listings, it leverages advanced matching algorithms and a dynamic "Living Portfolio" concept to connect the right talent with the right opportunities seamlessly.
 
-## 🚀 Live Demo
-
-Experience the full platform in action:
-
-**[▶️ Launch JobForest Now](https://icarusflew-se.github.io/JobForest/)**
-
 ## 🌟 Key Features
 
-### 🎯 Smart Job Matching (AI-Powered)
+### 🎯 Smart Job Matching
 - **Algorithmic Matching**: Finds the best candidates for every role based on skills, experience, and preferences.
 - **Candidate Discovery**: Employers can filter and discover top talent matching their specific requirements.
 
@@ -41,7 +35,7 @@ Experience the full platform in action:
 - **Storage**: LocalStorage for client-side data persistence.
 - **Design System**: **"TalentBank CareerOS"** - A modern, professional UI/UX framework.
 
-## 📊 Quick Stats
+## 📊 Quick Stats (Demo Purposes)
 
 | Metric | Count |
 |--------|-------|
@@ -83,11 +77,4 @@ JobForest/
    # Or use a simple local server
    python -m http.server 8000
    ```
-
-## 📡 Live Preview
-
-[▶️ Click here to visit JobForest](https://icarusflew-se.github.io/JobForest/)
-
 ---
-
-_Built with ❤️ for the modern talent economy._

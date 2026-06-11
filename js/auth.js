@@ -128,31 +128,31 @@ const Auth = (() => {
 
     loginForm.addEventListener('submit', (e) => {
       e.preventDefault();
-      const email = document.querySelector('[name="email"]')?.value.trim();
-      const password = document.querySelector('[name="password"]')?.value;
+      const emailField = document.querySelector('[name="email"]');
+      const passwordField = document.querySelector('[name="password"]');
+      const email = emailField?.value.trim();
+      const password = passwordField?.value;
 
       // Clear errors
       document.querySelectorAll('.form-error').forEach(el => el.remove());
       document.querySelectorAll('.form-input.error').forEach(el => el.classList.remove('error'));
 
       if (!email || !email.includes('@')) {
-        showFieldError(document.querySelector('[name="email"]'), 'Valid email is required');
+        showFieldError(emailField, 'Valid email is required');
         return;
       }
       if (!password) {
-        showFieldError(document.querySelector('[name="password"]'), 'Password is required');
+        showFieldError(passwordField, 'Password is required');
         return;
       }
 
-      // Simulate login — match against known profiles
-      let user = null;
-
       // Check candidate profiles
-      user = JobForestData.candidateProfiles.find(u => u.email === email);
+      const normalizedEmail = email.toLowerCase();
+      let user = JobForestData.candidateProfiles.find(u => u.email.toLowerCase() === normalizedEmail);
 
       // Check employer profiles
       if (!user) {
-        user = JobForestData.employerProfiles.find(u => u.email === email);
+        user = JobForestData.employerProfiles.find(u => u.email?.toLowerCase() === normalizedEmail);
       }
 
       // If no match, create a default candidate

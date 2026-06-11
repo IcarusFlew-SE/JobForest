@@ -11,7 +11,7 @@ const Matching = (() => {
   function init() {
     currentUser = JobForestData.getCurrentUser();
     if (!currentUser) {
-      window.location.href = 'login.html';
+      globalThis.location.href = 'login.html';
       return;
     }
 
@@ -142,7 +142,7 @@ const Matching = (() => {
       workModeScore = 20; // Maximum compatibility
     } else if (isSameLocation) {
       workModeScore = 20; // Local hybrid or onsite
-    } else if (!user.location) {
+    } else if (user.location) {
       workModeScore = 15; // Undefined location is moderately compatible
     } else {
       workModeScore = 5; // Mismatched location, reloc needed
@@ -161,7 +161,7 @@ const Matching = (() => {
       const endStr = exp.endDate === 'Present' ? '2026-06' : exp.endDate;
       const end = new Date(endStr + '-01');
 
-      if (!isNaN(start.getTime()) && !isNaN(end.getTime())) {
+      if (!Number.isNaN(start.getTime()) && !Number.isNaN(end.getTime())) {
         const diffMonths = (end.getFullYear() - start.getFullYear()) * 12 + (end.getMonth() - start.getMonth());
         totalMonths += Math.max(1, diffMonths);
       }
@@ -194,7 +194,9 @@ const Matching = (() => {
   // ─── RENDER MATCH CARD ────────────────────────
   function renderMatchCard(item) {
     const company = JobForestData.getCompanyById(item.job.companyId);
-    const scoreColor = item.score >= 80 ? 'success' : (item.score >= 60 ? 'warning' : 'danger');
+    const scoring = item.score >= 60 ? 'warning' : 'danger';
+    const scoreColor = item.score >= 80 ? 'success' : (scoring);
+    const missingSkills = item.breakdown.missingSkills.length > 3 ? '...' : '';
 
     const card = document.createElement('div');
     card.className = 'card glass-card reveal';
@@ -237,7 +239,7 @@ const Matching = (() => {
           </div>
           ${item.breakdown.missingSkills.length > 0
             ? `<div class="text-xs text-tertiary">
-                <strong>Missing Skills:</strong> ${item.breakdown.missingSkills.slice(0, 3).join(', ')}${item.breakdown.missingSkills.length > 3 ? '...' : ''}
+                <strong>Missing Skills:</strong> ${item.breakdown.missingSkills.slice(0, 3).join(', ')}${missingSkills}
                </div>`
             : ''
           }
@@ -252,7 +254,7 @@ const Matching = (() => {
 
     card.addEventListener('click', (e) => {
       if (e.target.closest('button')) return;
-      window.location.href = `job-detail.html?id=${item.job.id}`;
+      globalThis.location.href = `job-detail.html?id=${item.job.id}`;
     });
 
     return card;
