@@ -1,12 +1,8 @@
-/* ============================================================
-   JOBFOREST DESIGN SYSTEM v2.0
-   ============================================================
-   Architecture: Token-first, mobile-first, WCAG 2.1 AA
+/* JOBFOREST DESIGN
+   Architecture: Token-first, mobile-first
    Aesthetic:    Dark-forest professional — deep teals, warm
                  amber accents, editorial typography
-   Fonts:        Syne (display) + DM Sans (body)
-   Author:       JobForest Team
-   ============================================================ */
+   Fonts:        Syne (display) + DM Sans (body)*/
 
 /* ── 0. FONT IMPORTS ─────────────────────────────────────── */
 @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap');

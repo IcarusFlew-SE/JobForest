@@ -1,6 +1,6 @@
 // ============================================
 // JOBFOREST — JOB MATCHING ENGINE
-// AI-based Profile Matching & Recommendations
+// Profile Alignment & Recommendations
 // ============================================
 
 const Matching = (() => {
@@ -206,10 +206,10 @@ const Matching = (() => {
       <div class="card-body">
         <div class="flex justify-between items-start mb-4">
           <div class="flex gap-3">
-            <div class="job-card-logo" style="margin:0;">${company?.logo || '🏢'}</div>
+            <div class="job-card-logo" style="margin:0;">${company?.logo || `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z"/><path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2"/><path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2"/><path d="M10 6h4"/><path d="M10 10h4"/><path d="M10 14h4"/><path d="M10 18h4"/></svg>`}</div>
             <div>
               <h3 style="margin:0; font-size:var(--text-lg);">${item.job.title}</h3>
-              <p class="text-xs text-secondary">${company?.name || 'Unknown Company'} • 📍 ${item.job.location}</p>
+              <p class="text-xs text-secondary">${company?.name || 'Unknown Company'} • <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;margin-right:2px;"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>${item.job.location}</p>
             </div>
           </div>
           <div class="match-score-gauge flex flex-col items-center">
@@ -279,7 +279,7 @@ const Matching = (() => {
           </div>
           <div style="text-align:right;">
             <div style="font-size: var(--text-2xl); font-weight:800; color:${scoreColor};">${score}%</div>
-            <span class="text-xs text-tertiary">AI Alignment Score</span>
+            <span class="text-xs text-tertiary">Alignment Score</span>
           </div>
         </div>
 
@@ -294,8 +294,8 @@ const Matching = (() => {
               <div style="background:var(--color-primary); height:100%; width:${(bd.matchedSkills.length / (job.skills.length || 1)) * 100}%;"></div>
             </div>
             <div style="margin-top:var(--space-2); display:flex; flex-wrap:wrap; gap:4px;">
-              ${bd.matchedSkills.map(s => `<span class="tag tag-sm tag-primary" style="background:var(--color-primary-light); color:var(--color-primary);">✓ ${s}</span>`).join('')}
-              ${bd.missingSkills.map(s => `<span class="tag tag-sm tag-outline" style="border-color:var(--color-error); color:var(--color-error);">✗ ${s}</span>`).join('')}
+              ${bd.matchedSkills.map(s => `<span class="tag tag-sm tag-primary" style="background:var(--color-primary-light); color:var(--color-primary);"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;margin-right:2px;"><polyline points="20 6 9 17 4 12"/></svg>${s}</span>`).join('')}
+              ${bd.missingSkills.map(s => `<span class="tag tag-sm tag-outline" style="border-color:var(--color-error); color:var(--color-error);"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;margin-right:2px;"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>${s}</span>`).join('')}
             </div>
           </div>
 
@@ -317,7 +317,7 @@ const Matching = (() => {
               <span>${job.workMode} / Onsite Location</span>
             </div>
             <p class="text-xs text-secondary">
-              Job location is <strong>${job.location}</strong>. ${bd.locationMatch ? '✓ Location matches or is remote-friendly.' : '⚠ Mismatched location. Relocation/commute might be required.'}
+              Job location is <strong>${job.location}</strong>. ${bd.locationMatch ? '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;color:var(--color-success);"><polyline points="20 6 9 17 4 12"/></svg> Location matches or is remote-friendly.' : '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;color:var(--color-warning);"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> Mismatched location. Relocation/commute might be required.'}
             </p>
           </div>
         </div>
@@ -325,7 +325,7 @@ const Matching = (() => {
     `;
 
     Components.showModal(
-      `AI Alignment Breakdown`,
+      `Alignment Breakdown`,
       modalBody,
       `<button class="btn btn-primary btn-sm" onclick="Components.closeModal()">Close Details</button>`
     );
