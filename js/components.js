@@ -745,6 +745,22 @@ const Components = (() => {
     document.body.appendChild(nav);
   }
 
+  /* ── UTILITIES ────────────────────────────────────────────── */
+
+  /**
+   * Escape HTML special characters to prevent XSS.
+   * @param {string} str - Unescaped string
+   * @returns {string} Safe HTML string
+   */
+  function escapeHTML(str = '') {
+    return String(str)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#039;');
+  }
+
   /* ── PUBLIC API ─────────────────────────────────────────── */
   return {
     renderNavbar,
@@ -759,6 +775,7 @@ const Components = (() => {
     renderLoader,
     renderSkeletonCards,
     renderBottomNav,
+    escapeHTML,
   };
 
 })();
