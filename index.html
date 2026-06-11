@@ -30,11 +30,18 @@
     <section class="hero-section text-center relative overflow-hidden" id="hero-landing" aria-labelledby="hero-title">
       <div class="container relative" style="z-index: 2; padding: var(--space-16) 0 var(--space-12);">
         <span class="tag tag-primary tag-lg mb-4 reveal" style="border-radius: 20px;" aria-label="Version 1.0 Active">Version 1.0 Active</span>
-        <h1 id="hero-title" class="reveal" style="font-size: clamp(2.5rem, 6vw, 3.5rem); font-family: 'Outfit', sans-serif; font-weight: 800; line-height: 1.15; margin-bottom: var(--space-4);">
+        <h1 id="hero-title" class="reveal" 
+          style="
+          font-size: clamp(2.5rem, 6vw, 3.5rem); 
+          font-family: 'Outfit', sans-serif; 
+          font-weight: 800; 
+          line-height: 1.15; 
+          margin-bottom: var(--space-4);"
+        >
           Grow Your Career <br /><span class="text-gradient">Naturally</span>
         </h1>
         <p class="text-lg text-secondary max-w-xl mx-auto mb-8 reveal" style="font-family: 'DM Sans', sans-serif; line-height: 1.6;">
-          Connect with top-tier companies in Tech, Healthcare, and Green Energy. Find high-alignment jobs using our smart matching engine.
+          Connect with top-tier companies in Multiple Industries. Find high-alignment jobs using our smart matching engine.
         </p>
 
         <!-- Hero Search Bar -->
@@ -57,11 +64,19 @@
       </div>
 
       <!-- Visual background elements -->
-      <div class="hero-glow" aria-hidden="true" style="position: absolute; top: -10%; left: 30%; width: 500px; height: 500px; background: radial-gradient(circle, rgba(23,184,144,0.1) 0%, rgba(0,0,0,0) 70%); filter: blur(50px); pointer-events: none; z-index:1;"></div>
+      <div class="hero-glow" 
+      aria-hidden="true" style="position: absolute; top: -10%; left: 30%; width: 500px; height: 500px; background: radial-gradient(circle, rgba(23,184,144,0.1) 0%, rgba(0,0,0,0) 70%); filter: blur(50px); pointer-events: none; z-index:1;"></div>
     </section>
 
     <!-- Stats Section -->
-    <section class="stats-bar bg-black-opacity-5" aria-labelledby="stats-title" style="border-top: 1px solid var(--border-light); border-bottom: 1px solid var(--border-light); padding: var(--space-8) 0; background: rgba(0,0,0,0.02);">
+    <section
+      class="stats-bar"
+      style="
+        border-top:1px solid var(--border-light);
+        border-bottom:1px solid var(--border-light);
+        padding:4rem 2rem;
+        background:rgba(0,0,0,0.02);"
+    >
       <h2 id="stats-title" class="sr-only">Platform Statistics</h2>
       <div class="container grid grid-cols-3 gap-6 text-center">
         <div class="reveal">
@@ -92,12 +107,22 @@
           <p class="text-sm text-secondary mt-2">Construct your interactive resume and outline your core technical skillset in minutes.</p>
         </div>
         <div class="card glass-card text-center p-6 reveal" tabindex="0">
-          <div class="avatar avatar-xl" aria-hidden="true" style="background: var(--info-50); color: var(--info-600); margin: 0 auto var(--space-4);">2</div>
+          <div class="avatar avatar-xl" aria-hidden="true" 
+            style="
+            background: var(--info-50); 
+            color: var(--info-600); 
+            margin: 0 auto var(--space-4);"
+          >2</div>
           <h3>Smart Skills Matching</h3>
           <p class="text-sm text-secondary mt-2">Our algorithm matches your capabilities against active jobs with weighted scores.</p>
         </div>
         <div class="card glass-card text-center p-6 reveal" tabindex="0">
-          <div class="avatar avatar-xl" aria-hidden="true" style="background: var(--warning-50); color: var(--warning-600); margin: 0 auto var(--space-4);">3</div>
+          <div class="avatar avatar-xl" aria-hidden="true" 
+            style="
+            background: var(--warning-50); 
+            color: var(--warning-600); 
+            margin: 0 auto var(--space-4);"
+          >3</div>
           <h3>Apply & Get Hired</h3>
           <p class="text-sm text-secondary mt-2">Submit high-fidelity application folders and chat directly with recruiters in simple inboxes.</p>
         </div>
@@ -114,9 +139,9 @@
         <a href="pages/jobs.html" class="btn btn-outline btn-sm">View All Jobs</a>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="featured-jobs-grid" role="list" aria-label="Featured job listings">
+      <ul class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="featured-jobs-grid" aria-label="Featured job listings">
         <!-- Injected dynamically via JS -->
-      </div>
+      </ul>
     </section>
 
     <!-- Why Choose JobForest Section -->

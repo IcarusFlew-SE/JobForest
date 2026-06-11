@@ -180,7 +180,7 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: var(--space-8);
-  padding: var(--space-12) var(--space-6);
+  padding: var(--space-12) var(--space-20);
   background: var(--surface-sunken);
   border-top: 1px solid var(--border-default);
   border-bottom: 1px solid var(--border-default);
