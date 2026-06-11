@@ -4,7 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="JobForest - Grow your career naturally. Connect with top tech, design, and green energy companies.">
-  <title>JobForest 🌲 — Grow Your Career Naturally</title>
+  <meta name="theme-color" content="#0A1F17">
+  <title>JobForest — Grow Your Career Naturally</title>
   
   <!-- Typography & Icons -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -17,81 +18,86 @@
   <link rel="stylesheet" href="css/layouts.css">
   <link rel="stylesheet" href="css/pages.css">
 </head>
-<body class="theme-dark">
+<body class="theme-dark landing-page">
+
+  <!-- Skip to main content link for accessibility -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
 
   <!-- Main Content Area -->
-  <main class="page-container" style="padding-top: 80px;">
+  <main id="main-content" class="page-container" style="padding-top: 80px;">
     
     <!-- Hero Section -->
-    <section class="hero-section text-center relative overflow-hidden" id="hero-landing">
+    <section class="hero-section text-center relative overflow-hidden" id="hero-landing" aria-labelledby="hero-title">
       <div class="container relative" style="z-index: 2; padding: var(--space-16) 0 var(--space-12);">
-        <span class="tag tag-primary tag-lg mb-4 reveal" style="border-radius: 20px;">🌲 Version 1.0 Active</span>
-        <h1 class="reveal" style="font-size: 3.5rem; font-family: 'Outfit', sans-serif; font-weight: 800; line-height: 1.15; margin-bottom: var(--space-4);">
+        <span class="tag tag-primary tag-lg mb-4 reveal" style="border-radius: 20px;" aria-label="Version 1.0 Active">Version 1.0 Active</span>
+        <h1 id="hero-title" class="reveal" style="font-size: clamp(2.5rem, 6vw, 3.5rem); font-family: 'Outfit', sans-serif; font-weight: 800; line-height: 1.15; margin-bottom: var(--space-4);">
           Grow Your Career <br /><span class="text-gradient">Naturally</span>
         </h1>
-        <p class="text-lg text-secondary max-w-xl mx-auto mb-8 reveal" style="font-family: 'DM Sans', sans-serif;">
+        <p class="text-lg text-secondary max-w-xl mx-auto mb-8 reveal" style="font-family: 'DM Sans', sans-serif; line-height: 1.6;">
           Connect with top-tier companies in Tech, Healthcare, and Green Energy. Find high-alignment jobs using our AI-based matching engine.
         </p>
-        
+
         <!-- Hero Search Bar -->
         <div class="search-bar-wrapper glass max-w-2xl mx-auto mb-6 reveal" style="padding: var(--space-3); border-radius: 50px; display: flex; gap: var(--space-2); align-items: center; border: 1px solid var(--border-light);">
-          <span style="font-size: 1.3rem; margin-left: var(--space-3);">🔍</span>
-          <input type="text" id="hero-search-input" placeholder="Search titles, skills, or companies..." style="flex:1; background:transparent; border:none; color:inherit; font-size:var(--text-md); outline:none;" />
+          <span aria-hidden="true" style="font-size: 1.3rem; margin-left: var(--space-3);">🔍</span>
+          <label for="hero-search-input" class="sr-only">Search jobs</label>
+          <input type="text" id="hero-search-input" placeholder="Search titles, skills, or companies..." aria-label="Search for jobs by title, skills, or company" style="flex:1; background:transparent; border:none; color:inherit; font-size:var(--text-md); outline:none;" />
           <button class="btn btn-primary" id="hero-search-btn" style="border-radius: 40px; padding: var(--space-3) var(--space-6);">Search Forests</button>
         </div>
 
         <!-- Hot Tags -->
-        <div class="flex flex-wrap justify-center gap-2 reveal">
+        <div class="flex flex-wrap justify-center gap-2 reveal" role="group" aria-label="Popular search categories">
           <span class="text-sm text-tertiary" style="align-self: center; margin-right: 8px;">Popular:</span>
-          <button class="tag tag-outline category-chip" data-kw="React">React</button>
-          <button class="tag tag-outline category-chip" data-kw="Figma">Figma</button>
-          <button class="tag tag-outline category-chip" data-kw="Python">Python</button>
-          <button class="tag tag-outline category-chip" data-kw="Kubernetes">Kubernetes</button>
-          <button class="tag tag-outline category-chip" data-kw="Remote">Remote</button>
+          <button class="tag tag-outline category-chip" data-kw="React" aria-label="Search React jobs">React</button>
+          <button class="tag tag-outline category-chip" data-kw="Figma" aria-label="Search Figma jobs">Figma</button>
+          <button class="tag tag-outline category-chip" data-kw="Python" aria-label="Search Python jobs">Python</button>
+          <button class="tag tag-outline category-chip" data-kw="Kubernetes" aria-label="Search Kubernetes jobs">Kubernetes</button>
+          <button class="tag tag-outline category-chip" data-kw="Remote" aria-label="Search Remote jobs">Remote</button>
         </div>
       </div>
-      
+
       <!-- Visual background elements -->
-      <div class="hero-glow" style="position: absolute; top: -10%; left: 30%; width: 500px; height: 500px; background: radial-gradient(circle, rgba(23,184,144,0.1) 0%, rgba(0,0,0,0) 70%); filter: blur(50px); pointer-events: none; z-index:1;"></div>
+      <div class="hero-glow" aria-hidden="true" style="position: absolute; top: -10%; left: 30%; width: 500px; height: 500px; background: radial-gradient(circle, rgba(23,184,144,0.1) 0%, rgba(0,0,0,0) 70%); filter: blur(50px); pointer-events: none; z-index:1;"></div>
     </section>
 
     <!-- Stats Section -->
-    <section class="stats-bar bg-black-opacity-5" style="border-top: 1px solid var(--border-light); border-bottom: 1px solid var(--border-light); padding: var(--space-8) 0; background: rgba(0,0,0,0.02);">
+    <section class="stats-bar bg-black-opacity-5" aria-labelledby="stats-title" style="border-top: 1px solid var(--border-light); border-bottom: 1px solid var(--border-light); padding: var(--space-8) 0; background: rgba(0,0,0,0.02);">
+      <h2 id="stats-title" class="sr-only">Platform Statistics</h2>
       <div class="container grid grid-cols-3 gap-6 text-center">
         <div class="reveal">
-          <div class="text-3xl font-extrabold text-gradient" data-counter="1240" data-suffix="+">0</div>
-          <p class="text-sm text-tertiary mt-1">Active Vacancies</p>
+          <div class="text-3xl font-extrabold text-gradient" data-counter="1240" data-suffix="+" aria-describedby="stat-vacancies">0</div>
+          <p id="stat-vacancies" class="text-sm text-tertiary mt-1">Active Vacancies</p>
         </div>
         <div class="reveal">
-          <div class="text-3xl font-extrabold text-gradient" data-counter="450">0</div>
-          <p class="text-sm text-tertiary mt-1">Partner Workplaces</p>
+          <div class="text-3xl font-extrabold text-gradient" data-counter="450" aria-describedby="stat-workplaces">0</div>
+          <p id="stat-workplaces" class="text-sm text-tertiary mt-1">Partner Workplaces</p>
         </div>
         <div class="reveal">
-          <div class="text-3xl font-extrabold text-gradient" data-counter="8200" data-suffix="+">0</div>
-          <p class="text-sm text-tertiary mt-1">Hired Candidates</p>
+          <div class="text-3xl font-extrabold text-gradient" data-counter="8200" data-suffix="+" aria-describedby="stat-hired">0</div>
+          <p id="stat-hired" class="text-sm text-tertiary mt-1">Hired Candidates</p>
         </div>
       </div>
     </section>
 
     <!-- How it Works -->
-    <section class="container py-16">
+    <section class="container py-16" aria-labelledby="how-it-works-title">
       <div class="text-center mb-12 reveal">
-        <h2>How JobForest Works</h2>
+        <h2 id="how-it-works-title">How JobForest Works</h2>
         <p class="text-secondary">A simple 3-step process to transition into your next career growth phase.</p>
       </div>
-      <div class="grid grid-cols-3 gap-8">
-        <div class="card glass-card text-center p-6 reveal">
-          <div class="avatar avatar-xl" style="background: var(--color-primary-light); color: var(--color-primary); margin: 0 auto var(--space-4);">1</div>
+      <div class="features-grid">
+        <div class="card glass-card text-center p-6 reveal" tabindex="0">
+          <div class="avatar avatar-xl" aria-hidden="true" style="background: var(--brand-50); color: var(--brand-600); margin: 0 auto var(--space-4);">1</div>
           <h3>Create Profile</h3>
           <p class="text-sm text-secondary mt-2">Construct your interactive resume and outline your core technical skillset in minutes.</p>
         </div>
-        <div class="card glass-card text-center p-6 reveal">
-          <div class="avatar avatar-xl" style="background: var(--color-info-light); color: var(--color-info); margin: 0 auto var(--space-4);">2</div>
+        <div class="card glass-card text-center p-6 reveal" tabindex="0">
+          <div class="avatar avatar-xl" aria-hidden="true" style="background: var(--info-50); color: var(--info-600); margin: 0 auto var(--space-4);">2</div>
           <h3>AI Skills Matching</h3>
           <p class="text-sm text-secondary mt-2">Our proprietary algorithm matches your capabilities against active jobs with weighted scores.</p>
         </div>
-        <div class="card glass-card text-center p-6 reveal">
-          <div class="avatar avatar-xl" style="background: var(--color-accent-light); color: var(--color-accent); margin: 0 auto var(--space-4);">3</div>
+        <div class="card glass-card text-center p-6 reveal" tabindex="0">
+          <div class="avatar avatar-xl" aria-hidden="true" style="background: var(--warning-50); color: var(--warning-600); margin: 0 auto var(--space-4);">3</div>
           <h3>Apply & Get Hired</h3>
           <p class="text-sm text-secondary mt-2">Submit high-fidelity application folders and chat directly with recruiters in simple inboxes.</p>
         </div>
@@ -99,31 +105,31 @@
     </section>
 
     <!-- Dynamic Featured Jobs Section -->
-    <section class="container py-12" style="border-top: 1px solid var(--border-light);">
+    <section class="container py-12" aria-labelledby="featured-jobs-title" style="border-top: 1px solid var(--border-light);">
       <div class="flex justify-between items-end mb-8 reveal">
         <div>
-          <h2>Featured Opportunities</h2>
+          <h2 id="featured-jobs-title">Featured Opportunities</h2>
           <p class="text-secondary">Top-tier verified openings matching latest industry trends.</p>
         </div>
-        <a href="pages/jobs.html" class="btn btn-secondary btn-sm">View All Jobs ➜</a>
+        <a href="pages/jobs.html" class="btn btn-outline btn-sm">View All Jobs</a>
       </div>
-      
-      <div class="grid grid-cols-3 gap-6" id="featured-jobs-grid">
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="featured-jobs-grid" role="list" aria-label="Featured job listings">
         <!-- Injected dynamically via JS -->
       </div>
     </section>
 
     <!-- Employer Banner Section -->
-    <section class="container py-16">
-      <div class="card glass-card p-12 text-center relative overflow-hidden reveal" style="border: 1px solid var(--color-primary);">
+    <section class="container py-16" aria-labelledby="employer-banner-title">
+      <div class="card glass-card p-12 text-center relative overflow-hidden reveal" style="border: 1px solid var(--brand-400);">
         <div class="relative" style="z-index: 2;">
-          <h2 style="font-size: var(--text-2xl); font-family: 'Outfit', sans-serif;">Looking to Hire Talented Professionals?</h2>
-          <p class="text-secondary max-w-lg mx-auto mt-2 mb-8">
+          <h2 id="employer-banner-title" style="font-size: var(--text-2xl); font-family: 'Outfit', sans-serif;">Looking to Hire Talented Professionals?</h2>
+          <p class="text-secondary max-w-lg mx-auto mt-2 mb-8" style="line-height: 1.6;">
             Create an Employer profile today, post unlimited job vacancies, and inspect matches evaluated by our alignment scores.
           </p>
-          <a href="pages/signup.html" class="btn btn-primary" id="start-hiring-cta">Start Hiring Today</a>
+          <a href="pages/signup.html" class="btn btn-primary btn-lg" id="start-hiring-cta">Start Hiring Today</a>
         </div>
-        <div style="position: absolute; right: -50px; bottom: -50px; opacity: 0.05; font-size: 15rem; pointer-events: none; z-index: 1;">💼</div>
+        <div aria-hidden="true" style="position: absolute; right: -50px; bottom: -50px; opacity: 0.05; font-size: 15rem; pointer-events: none; z-index: 1;">💼</div>
       </div>
     </section>
 

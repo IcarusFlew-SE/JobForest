@@ -138,23 +138,23 @@ const Dashboard = (() => {
 
     container.innerHTML = `
       <div class="dashboard-header reveal">
-        <h2>Welcome back, ${escapeHTML(currentUser.firstName)}! 🌲</h2>
+        <h2>Welcome back, ${escapeHTML(currentUser.firstName)}!</h2>
         <p class="text-secondary">Grow your career naturally. Here is your progress today.</p>
       </div>
 
-      <div class="grid grid-cols-4 gap-6 mb-8 reveal">
-        ${Components.renderStatCard('📝', apps.length, 'Applications Sent', '', 'green')}
-        ${Components.renderStatCard('🤝', interviewCount, 'Interviews Scheduled', interviewCount > 0 ? '+1 this week' : '', 'amber')}
-        ${Components.renderStatCard('⭐', savedJobs.length, 'Saved Opportunities', '', 'info')}
-        ${Components.renderStatCard('⚡', `${Math.round(topMatch)}%`, 'Top Match Score', 'Add skills to increase', 'purple')}
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-6 mb-8 reveal" role="region" aria-label="Dashboard statistics">
+        ${Components.renderStatCard('apps', apps.length, 'Applications Sent', '', 'success')}
+        ${Components.renderStatCard('interview', interviewCount, 'Interviews Scheduled', interviewCount > 0 ? '+1 this week' : '', 'warning')}
+        ${Components.renderStatCard('saved', savedJobs.length, 'Saved Opportunities', '', 'info')}
+        ${Components.renderStatCard('match', Math.round(topMatch), 'Top Match Score', 'Add skills to increase', 'brand')}
       </div>
 
-      <div class="grid grid-cols-3 gap-6 reveal">
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 reveal">
         <!-- Recent applications -->
-        <div class="card col-span-2 glass-card">
+        <div class="card col-span-1 lg:col-span-2 glass-card">
           <div class="card-header flex justify-between items-center">
             <h3>Recent Applications</h3>
-            <a href="#applications" class="text-sm text-primary" onclick="document.querySelector('[data-tab=applications]').click()">View All</a>
+            <a href="#applications" class="text-sm" style="color: var(--brand-500);" onclick="document.querySelector('[data-tab=applications]').click()">View All</a>
           </div>
           <div class="card-body" style="padding: 0;">
             ${apps.length === 0 
@@ -203,19 +203,24 @@ const Dashboard = (() => {
           <div class="card-body">
             <div class="flex flex-col gap-4">
               <div class="progress-ring-mini flex items-center gap-4">
-                <div class="avatar avatar-lg" style="background: var(--color-primary-light); color: var(--color-primary);">🌲</div>
+                <div class="avatar avatar-lg" style="background: var(--brand-50); color: var(--brand-600);">JF</div>
                 <div>
                   <h4 style="margin:0;">Profile Strength</h4>
                   <span class="text-sm text-secondary">${currentUser.profileCompletion}% Complete</span>
+                </div>
+              </div>
+              <div class="progress-linear" style="margin-top: var(--space-2);">
+                <div class="progress-linear-track">
+                  <div class="progress-linear-fill" style="width: ${currentUser.profileCompletion}%;"></div>
                 </div>
               </div>
               <p class="text-sm text-secondary" style="line-height:1.5;">
                 Adding more certifications or work history helps our match algorithm align your profile to high-paying developer roles.
               </p>
               <hr style="border-color: var(--border-light); margin: var(--space-2) 0;" />
-              <button class="btn btn-secondary btn-block btn-sm" onclick="window.location.href='job-matching.html'">
-                🎯 Run Job Matching
-              </button>
+              <a class="btn btn-outline btn-block btn-sm" href="job-matching.html">
+                Run Job Matching
+              </a>
             </div>
           </div>
         </div>
@@ -412,22 +417,22 @@ const Dashboard = (() => {
 
     container.innerHTML = `
       <div class="dashboard-header reveal">
-        <h2>Welcome back, ${currentUser.firstName}! 💼</h2>
-        <p class="text-secondary">Manage candidate pipelines for <strong>${company.name}</strong>.</p>
+        <h2>Welcome back, ${currentUser.firstName}!</h2>
+        <p class="text-secondary">Manage candidate pipelines for <strong>${escapeHTML(company.name)}</strong>.</p>
       </div>
 
-      <div class="grid grid-cols-4 gap-6 mb-8 reveal">
-        ${Components.renderStatCard('📁', activePosts, 'Active Job Posts', '', 'green')}
-        ${Components.renderStatCard('👥', allApps.length, 'Total Candidates', '', 'info')}
-        ${Components.renderStatCard('🗓️', interviewCount, 'Scheduled Interviews', '', 'amber')}
-        ${Components.renderStatCard('🎯', `${hireRate}%`, 'Offer Accept Rate', '', 'purple')}
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-6 mb-8 reveal" role="region" aria-label="Employer statistics">
+        ${Components.renderStatCard('posts', activePosts, 'Active Job Posts', '', 'success')}
+        ${Components.renderStatCard('candidates', allApps.length, 'Total Candidates', '', 'info')}
+        ${Components.renderStatCard('interview', interviewCount, 'Scheduled Interviews', '', 'warning')}
+        ${Components.renderStatCard('rate', hireRate, 'Offer Accept Rate', '', 'brand')}
       </div>
 
-      <div class="grid grid-cols-3 gap-6 reveal">
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 reveal">
         <!-- Funnel visualizer -->
-        <div class="card col-span-2 glass-card">
+        <div class="card col-span-1 lg:col-span-2 glass-card">
           <div class="card-header">
-            <h3>Recruitment Pipeline stage</h3>
+            <h3>Recruitment Pipeline</h3>
           </div>
           <div class="card-body">
             <div class="funnel-container flex flex-col gap-4">
@@ -437,7 +442,7 @@ const Dashboard = (() => {
                   <span>${allApps.filter(a => a.status === 'applied').length} Candidates</span>
                 </div>
                 <div class="bar-progress-container" style="background:var(--border-default); border-radius:4px; height:8px; width:100%;">
-                  <div style="background:var(--color-primary); height:100%; border-radius:4px; width:${(allApps.filter(a => a.status === 'applied').length / (allApps.length || 1)) * 100}%"></div>
+                  <div style="background:var(--brand-500); height:100%; border-radius:4px; width:${(allApps.filter(a => a.status === 'applied').length / (allApps.length || 1)) * 100}%"></div>
                 </div>
               </div>
               <div>
@@ -446,7 +451,7 @@ const Dashboard = (() => {
                   <span>${allApps.filter(a => a.status === 'reviewed').length} Candidates</span>
                 </div>
                 <div class="bar-progress-container" style="background:var(--border-default); border-radius:4px; height:8px; width:100%;">
-                  <div style="background:var(--color-info); height:100%; border-radius:4px; width:${(allApps.filter(a => a.status === 'reviewed').length / (allApps.length || 1)) * 100}%"></div>
+                  <div style="background:var(--info-500); height:100%; border-radius:4px; width:${(allApps.filter(a => a.status === 'reviewed').length / (allApps.length || 1)) * 100}%"></div>
                 </div>
               </div>
               <div>
@@ -455,7 +460,7 @@ const Dashboard = (() => {
                   <span>${allApps.filter(a => a.status === 'interview').length} Candidates</span>
                 </div>
                 <div class="bar-progress-container" style="background:var(--border-default); border-radius:4px; height:8px; width:100%;">
-                  <div style="background:var(--color-warning); height:100%; border-radius:4px; width:${(allApps.filter(a => a.status === 'interview').length / (allApps.length || 1)) * 100}%"></div>
+                  <div style="background:var(--warning-500); height:100%; border-radius:4px; width:${(allApps.filter(a => a.status === 'interview').length / (allApps.length || 1)) * 100}%"></div>
                 </div>
               </div>
               <div>
@@ -464,7 +469,7 @@ const Dashboard = (() => {
                   <span>${allApps.filter(a => a.status === 'offered').length} Hires</span>
                 </div>
                 <div class="bar-progress-container" style="background:var(--border-default); border-radius:4px; height:8px; width:100%;">
-                  <div style="background:var(--color-success); height:100%; border-radius:4px; width:${(allApps.filter(a => a.status === 'offered').length / (allApps.length || 1)) * 100}%"></div>
+                  <div style="background:var(--success-500); height:100%; border-radius:4px; width:${(allApps.filter(a => a.status === 'offered').length / (allApps.length || 1)) * 100}%"></div>
                 </div>
               </div>
             </div>
@@ -478,10 +483,10 @@ const Dashboard = (() => {
           </div>
           <div class="card-body flex flex-col gap-3">
             <button class="btn btn-primary btn-block" onclick="Dashboard.openPostJobModal()">
-              ➕ Post a New Job
+              Post a New Job
             </button>
             <button class="btn btn-outline btn-block" onclick="document.querySelector('[data-tab=candidates]').click()">
-              👥 Screen Candidates
+              Screen Candidates
             </button>
             <hr style="border-color:var(--border-light); margin: var(--space-2) 0;" />
             <p class="text-xs text-tertiary" style="line-height:1.4;">
