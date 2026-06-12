@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Living Portfolio — JobForest</title>
+  
+  <!-- Typography & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Outfit:wght@400;500;600;700;800&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  
+  <!-- CSS Stylesheets -->
+  <link rel="stylesheet" href="../css/design-system.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/layouts.css">
+  <link rel="stylesheet" href="../css/pages.css">
+</head>
+<body class="theme-dark">
+
+  <main class="page-container" style="padding-top: 80px;">
+    <div class="container py-8">
+      
+      <!-- Feature Marketing Header -->
+      <section class="text-center py-12 reveal">
+        <span class="tag tag-accent mb-2">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;margin-right:4px;"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          COMING SOON
+        </span>
+        <h1 style="font-family:'Outfit', sans-serif; font-size:3rem; font-weight:800; line-height:1.1;">
+          Your Resume. <span class="text-gradient">Fully Alive</span>.
+        </h1>
+        <p class="text-lg text-secondary max-w-xl mx-auto mt-4 mb-8" style="line-height:1.6;">
+          Introducing the Living Portfolio — a dynamic, self-updating resume that links to your Git commits, LinkedIn credentials, and peer endorsements in real-time.
+        </p>
+      </section>
+
+      <!-- Main Column Splits -->
+      <div class="grid grid-cols-5 gap-8">
+        
+        <!-- Left: Marketing features & simulated timeline logs -->
+        <section class="col-span-2 flex flex-col gap-6 reveal">
+          
+          <!-- Concept description card -->
+          <div class="card glass-card" style="padding: var(--space-5);">
+            <h3>Autonomous CV Updates</h3>
+            <p class="text-xs text-secondary mt-2 mb-4" style="line-height:1.5;">
+              No more manual copy-pasting. The Living Portfolio monitors your linked developer accounts and appends credentials, new skills, and project summaries autonomously.
+            </p>
+            <div id="cv-timeline-animation" class="flex flex-col border border-light" style="border-radius:8px; overflow:hidden; background: rgba(0,0,0,0.05); min-height: 250px;">
+              <!-- Timelines simulated log cards injected dynamically by portfolio.js -->
+            </div>
+          </div>
+
+          <!-- Newsletter Early Access card -->
+          <div id="early-access-card" class="card glass-card" style="padding: var(--space-5); border: 1.5px solid var(--color-accent); position: relative;">
+            <h3>Unlock Early Access</h3>
+            <p class="text-xs text-secondary mt-2 mb-4" style="line-height:1.5;">
+              Be the first to know when we rollout V2 dynamic portfolios public testing profiles. Subscribe to the waitlist below.
+            </p>
+            <form id="early-access-form" class="flex gap-2">
+              <input type="email" class="form-input" style="margin:0; font-size:var(--text-xs);" placeholder="enter your email..." required />
+              <button type="submit" class="btn btn-accent btn-sm" style="border-radius: 6px;">Notify Me</button>
+            </form>
+          </div>
+
+          <script>
+            (() => {
+              // 1. Fetch current user from your data stream or localStorage framework
+              // Defaulting to an empty object if no user session is detected to prevent uncaught script crashes
+              const currentUser = JSON.parse(localStorage.getItem('currentUser')) || {}; 
+              
+              // 2. Check the user's current subscription tier token
+              // Looking for your active premium plan tags ("Sapling" or "Forest Elite")
+              const hasUpgradedPlan = currentUser.plan === 'Sapling' || currentUser.plan === 'Forest Elite';
+
+              // 3. If they are on a free plan ("Seedling") or logged out, trigger the blur overlay
+              if (!hasUpgradedPlan) {
+                const card = document.getElementById('early-access-card');
+                
+                // Inject the blur behavior class wrapper
+                card.classList.add('premium-lock-blur');
+                
+                // Inject a clean, unblurred call-to-action layer over the blur area
+                const lockOverlay = document.createElement('div');
+                lockOverlay.className = 'premium-lock-overlay';
+                lockOverlay.innerHTML = `
+                  <span style="font-size: 1.5rem; margin-bottom: var(--space-1);">⭐</span>
+                  <h4 style="font-size: var(--text-sm); font-weight: var(--fw-bold); color: #fff; margin-bottom: 2px;">Premium Feature</h4>
+                  <p class="text-xs text-secondary mb-3" style="max-width: 200px; line-height: 1.3;">Upgraded plans get instant access to V2 beta test tracking profiles.</p>
+                  <button class="btn btn-primary btn-xs" style="min-height: 28px; font-size: 10px;" onclick="window.location.href='pricingplan.html'">
+                    Upgrade Now
+                  </button>
+                `;
+                
+                card.appendChild(lockOverlay);
+              }
+            })();
+          </script>
+
+        <!-- Right: Portfolio Design Layout Preview Customizer -->
+        <section class="col-span-3 reveal">
+          <div class="card glass-card" style="padding: var(--space-6);">
+            
+            <div class="flex justify-between items-center mb-6">
+              <h3 style="margin:0; font-size:var(--text-lg);">Portfolio Layout Preview</h3>
+              <div class="theme-select-toggle flex gap-1 p-1 bg-black-opacity-5" style="border-radius: 6px; background: rgba(0,0,0,0.02); border: 1px solid var(--border-light);">
+                <button class="btn btn-ghost btn-xs theme-selector-btn active" data-theme="minimal" style="padding: var(--space-1) var(--space-3); border:none; cursor:pointer;">Minimal</button>
+                <button class="btn btn-ghost btn-xs theme-selector-btn" data-theme="forest" style="padding: var(--space-1) var(--space-3); border:none; cursor:pointer;">Forest</button>
+                <button class="btn btn-ghost btn-xs theme-selector-btn" data-theme="cyberpunk" style="padding: var(--space-1) var(--space-3); border:none; cursor:pointer;">Cyber</button>
+              </div>
+            </div>
+
+            <!-- Dynamic Preview Card Target -->
+            <div class="portfolio-preview-card-wrapper theme-minimal" id="portfolio-preview-card" style="border:1px solid var(--border-light); border-radius:12px; padding:var(--space-6); min-height: 380px; transition: all 0.5s ease;">
+              
+              <!-- Simulated Header -->
+              <div class="preview-header flex justify-between items-center mb-6">
+                <div class="flex gap-3 items-center">
+                  <div class="avatar avatar-xl preview-avatar" style="background:var(--color-primary); color:#fff; font-size:1.2rem; font-weight:700;">AR</div>
+                  <div>
+                    <h2 class="preview-name" style="margin:0; font-size:var(--text-lg); font-family:inherit;">Alex Rivera</h2>
+                    <span class="preview-title text-xs text-secondary font-semibold">Full Stack Developer</span>
+                  </div>
+                </div>
+                <span class="tag tag-sm tag-primary preview-status">Available for hire</span>
+              </div>
+
+              <!-- Simulated content columns -->
+              <div class="preview-columns flex flex-col gap-4">
+                <div class="preview-section">
+                  <h4 class="preview-sec-title" style="margin:0 0 var(--space-2); font-size:var(--text-xs); text-transform:uppercase; letter-spacing:1px;">Summary Profile</h4>
+                  <p class="preview-text text-xs text-secondary" style="line-height:1.6; margin:0;">
+                    Developer with 4+ years building responsive apps. Specialist in TypeScript node modules and client-side UI optimization pipelines.
+                  </p>
+                </div>
+
+                <div class="preview-section">
+                  <h4 class="preview-sec-title" style="margin:0 0 var(--space-2); font-size:var(--text-xs); text-transform:uppercase; letter-spacing:1px;">Auto-Synchronized Skills</h4>
+                  <div class="flex flex-wrap gap-1 preview-tags">
+                    <span class="tag tag-sm">React</span>
+                    <span class="tag tag-sm">TypeScript</span>
+                    <span class="tag tag-sm">Node.js</span>
+                    <span class="tag tag-sm">AWS</span>
+                    <span class="tag tag-sm">Docker</span>
+                    <span class="tag tag-sm preview-highlight-tag">Redux Toolkit (auto-added)</span>
+                  </div>
+                </div>
+
+                <div class="preview-section">
+                  <h4 class="preview-sec-title" style="margin:0 0 var(--space-2); font-size:var(--text-xs); text-transform:uppercase; letter-spacing:1px;">Linked Endorsements</h4>
+                  <div class="p-3 preview-testimonial" style="border-radius:6px; background: rgba(0,0,0,0.02); border: 1px solid var(--border-light);">
+                    <p class="text-xs text-secondary italic" style="margin:0; line-height:1.4;">"Alex designed performant client-side structures for our SaaS interfaces. Exceptional code quality."</p>
+                    <div class="text-right text-xs text-tertiary mt-2">— Sarah Chen, TechNova Head of Eng.</div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+        </section>
+
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Script Modules -->
+  <script src="../js/data.js"></script>
+  <script src="../js/components.js"></script>
+  <script src="../js/portfolio.js"></script>
+  <script src="../js/app.js"></script>
+  
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      Components.renderNavbar('portfolio');
+      App.init('portfolio');
+      Portfolio.init();
+      Components.renderFooter('portfolio');
+    });
+  </script>
+</body>
+</html>
