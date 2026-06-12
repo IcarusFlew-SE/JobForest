@@ -273,10 +273,10 @@ const Components = (() => {
           <div class="footer-column">
             <h4>Company</h4>
             <ul>
-              <li><a href="#">About Us</a></li>
-              <li><a href="#">Blog</a></li>
-              <li><a href="#">Privacy Policy</a></li>
-              <li><a href="#">Contact</a></li>
+              <li><a href="${basePath}about.html">About Us</a></li>
+              <li><a href="${basePath}blog.html">Blog</a></li>
+              <li><a href="${basePath}privacy.html">Privacy Policy</a></li>
+              <li><a href="${basePath}contact.html">Contact</a></li>
             </ul>
           </div>
 
@@ -839,11 +839,235 @@ const Components = (() => {
                 <li>🌲 Dedicated Account Handler</li>
               </ul>
             </div>
-            <button class="btn btn-outline btn-block mt-6" style="padding: var(--space-2); font-size: var(--text-xs); width: 100%;" onclick="Components.showToast('Opening consultation channel with Enterprise team...', 'success')">Contact Sales</button>
+            <button class="btn btn-outline btn-block mt-6" style="padding: var(--space-2); font-size: var(--text-xs);" onclick="window.location.href='contact.html'">Contact Sales</button>
           </div>
 
         </div>
       </div>
+    `;
+
+    return container;
+  };
+
+  /* ── PUBLIC API — ABOUT US ── */
+  function renderAboutUs() {
+    const container = document.createElement('div');
+    container.className = 'about-page-layout';
+    container.style.width = '100%';
+
+    container.innerHTML = `
+      <section class="container" style="padding: var(--space-12) var(--space-4) var(--space-16); max-width: 1024px; margin: 0 auto;">
+        <div style="display: flex; flex-flow: row wrap; align-items: center; gap: var(--space-10); justify-content: center;">
+          
+          <div class="reveal" style="flex: 1 1 400px; max-width: 520px; text-align: left;">
+            <span class="tag tag-primary mb-4" style="text-transform: uppercase; font-size: 11px; letter-spacing: 0.05em; display: inline-block;">Our Roots</span>
+            
+            <h1 style="font-size: var(--text-4xl); font-weight: var(--fw-extrabold); line-height: 1.2; margin-bottom: var(--space-4); max-width: 460px;">
+              Growing the Next <span class="text-gradient">Software Ecosystem</span>
+            </h1>
+            
+            <p class="text-secondary" style="font-size: var(--text-md); line-height: 1.6; margin-bottom: var(--space-4); max-width: 480px;">
+              Founded in 2026, JobForest was built to strip away the surface-level noise of traditional hiring boards. We engineer direct algorithmic pathways that match authentic software capabilities against high-velocity development squads.
+            </p>
+            <p class="text-secondary" style="font-size: var(--text-sm); line-height: 1.6; max-width: 480px;">
+              We believe in deep technical transparency, skipping structural bloat, and empowering engineers to transition seamlessly into their next phase of production stability.
+            </p>
+          </div>
+
+          <div class="reveal" style="flex: 1 1 340px; max-width: 420px; position: relative;">
+            <div class="card glass-card text-center" style="padding: var(--space-8); border: 1px solid var(--border-brand); background: linear-gradient(145deg, rgba(23,184,144,0.05) 0%, transparent 70%);">
+              <span style="font-size: 3.5rem; display: block; margin-bottom: var(--space-2); filter: drop-shadow(0 0 15px rgba(23,184,144,0.2));">🌲</span>
+              <div class="text-2xl font-extrabold text-primary" style="margin-bottom: 4px;">100% Focused</div>
+              <p class="text-xs text-tertiary uppercase tracking-wider">On Technical Complexity</p>
+              <hr style="border-color: var(--border-light); margin: var(--space-4) 0;" />
+              <p class="text-xs text-secondary" style="line-height: 1.5; text-align: left;">
+                "Our platform calculates alignment indexes using weighted metrics rather than keyword scanning filters, giving developers verified portfolio integrity."
+              </p>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <section style="background: rgba(0,0,0,0.02); border-top: 1px solid var(--border-light); border-bottom: 1px solid var(--border-light); padding: var(--space-16) 0;">
+        <div class="container" style="max-width: 1024px; margin: 0 auto; padding: 0 var(--space-6);">
+          
+          <div class="text-center mb-12 reveal" style="max-width: 600px; margin: 0 auto var(--space-12);">
+            <h2>The Principles Anchoring Our Forest</h2>
+            <p class="text-secondary text-sm" style="margin-top: var(--space-1);">The values driving our design frameworks and engineering culture daily.</p>
+          </div>
+
+          <div style="display: flex; flex-flow: row wrap; gap: var(--space-6); justify-content: center; align-items: stretch;">
+            <div class="card glass-card" style="flex: 1 1 280px; max-width: 310px; padding: var(--space-6); display: flex; flex-direction: column; gap: var(--space-3);">
+              <div style="font-size: 1.5rem;">⚡</div>
+              <h3 style="font-size: var(--text-md); font-weight: var(--fw-semibold); margin: 0;">Velocity Over Bloat</h3>
+              <p class="text-xs text-secondary" style="line-height: 1.6; margin: 0;">
+                We cut out superficial job descriptions and slow candidate loops. We ship performant UX pipelines that save technical leads hours of screen triage.
+              </p>
+            </div>
+
+            <div class="card glass-card" style="flex: 1 1 280px; max-width: 310px; padding: var(--space-6); display: flex; flex-direction: column; gap: var(--space-3); border-color: var(--border-strong);">
+              <div style="font-size: 1.5rem;">🔒</div>
+              <h3 style="font-size: var(--text-md); font-weight: var(--fw-semibold); margin: 0;">Verified Data Integrity</h3>
+              <p class="text-xs text-secondary" style="line-height: 1.6; margin: 0;">
+                Every applicant profile links straight to verified repository assets and portfolio timelines. Recruiters gain clean visibility without compliance risks.
+              </p>
+            </div>
+
+            <div class="card glass-card" style="flex: 1 1 280px; max-width: 310px; padding: var(--space-6); display: flex; flex-direction: column; gap: var(--space-3);">
+              <div style="font-size: 1.5rem;">🤝</div>
+              <h3 style="font-size: var(--text-md); font-weight: var(--fw-semibold); margin: 0;">Load-Bearing Support</h3>
+              <p class="text-xs text-secondary" style="line-height: 1.6; margin: 0;">
+                We build stability blocks for engineering students, active teams, and scaling tech founders alike. We protect our ecosystem's growth naturally.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="container" style="padding: var(--space-16) var(--space-4); max-width: 800px; text-align: center;">
+        <div class="card reveal" style="background: var(--gradient-brand); padding: var(--space-10) var(--space-6); border-radius: var(--radius-2xl); color: #000;">
+          <h2 style="color: #000; font-size: var(--text-2xl); margin-bottom: var(--space-2);">Ready to plant your roots?</h2>
+          <p style="font-size: var(--text-sm); opacity: 0.85; max-width: 480px; margin: 0 auto var(--space-6); line-height: 1.5;">
+            Join thousands of full-stack developers, ML practitioners, and design leads accelerating their deployment timeline on JobForest.
+          </p>
+          <div style="display: flex; gap: var(--space-3); justify-content: center; flex-wrap: wrap;">
+            <button class="btn btn-outline btn-sm" style="background: #000; color: #fff; border: none;" onclick="window.location.href='jobs.html'">Explore Vacancies</button>
+            <button class="btn btn-ghost btn-sm" style="color: #000; font-weight: 700;" onclick="window.location.href='signup.html'">Create Free Account →</button>
+          </div>
+        </div>
+      </section>
+    `;
+
+    return container;
+  }
+
+  /* ── PUBLIC API — PRIVACY POLICY ── */
+  function renderPrivacyPolicy() {
+    const container = document.createElement('div');
+    container.className = 'privacy-page-layout';
+    container.style.width = '100%';
+
+    container.innerHTML = `
+      <section class="container" style="padding: var(--space-12) var(--space-4) var(--space-16); max-width: 800px; margin: 0 auto;">
+        
+        <div class="reveal text-center mb-12" style="max-width: 600px; margin: 0 auto var(--space-12);">
+          <h1 style="font-size: var(--text-4xl); font-weight: var(--fw-extrabold); line-height: 1.2; margin-bottom: var(--space-2);">
+            Privacy Policy
+          </h1>
+          <p class="text-secondary" style="font-size: var(--text-sm);">
+            Last Updated: June 13, 2026 • Effective Data Protection Principles
+          </p>
+        </div>
+
+        <div class="reveal flex flex-col gap-8 text-secondary" style="line-height: 1.7; font-size: var(--text-sm); text-align: left;">
+          
+          <div class="card glass-card" style="padding: var(--space-6);">
+            <h2 style="font-size: var(--text-lg); font-weight: var(--fw-semibold); color: var(--text-primary); margin-bottom: var(--space-3); display: flex; align-items: center; gap: var(--space-2);">
+              <span>🛡️</span> 1. Data Collection Architecture
+            </h2>
+            <p style="margin-bottom: var(--space-3);">
+              JobForest indexes candidate portfolio elements, technical skill tags, and work experience parameters to run our match alignment algorithm. We parse and load local storage objects to preserve active session data arrays.
+            </p>
+            <p style="margin-bottom: 0;">
+              For employer accounts, we store primary corporate metadata tokens including registered email keys, brand domains, company sizes, and active pipeline status summaries.
+            </p>
+          </div>
+
+          <div class="card glass-card" style="padding: var(--space-6);">
+            <h2 style="font-size: var(--text-lg); font-weight: var(--fw-semibold); color: var(--text-primary); margin-bottom: var(--space-3); display: flex; align-items: center; gap: var(--space-2);">
+              <span>⚡</span> 2. How Your Engineering Data is Utilized
+            </h2>
+            <p style="margin-bottom: var(--space-3);">
+              Your skill profiles and documented repository histories feed directly into our weighted alignment index calculations. This data is exclusively parsed to score compatibility ratios against open employer job posts.
+            </p>
+            <ul style="list-style: disc; padding-left: var(--space-5); display: flex; flex-direction: column; gap: var(--space-2);">
+              <li>Algorithmic matching across entry, mid, and senior vacancy levels.</li>
+              <li>Secure timeline streaming updates on the Living Portfolio engine.</li>
+              <li>Direct recruiter visibility indexing when your profile state is set to Public.</li>
+            </ul>
+          </div>
+
+          <div class="card glass-card" style="padding: var(--space-6);">
+            <h2 style="font-size: var(--text-lg); font-weight: var(--fw-semibold); color: var(--text-primary); margin-bottom: var(--space-3); display: flex; align-items: center; gap: var(--space-2);">
+              <span>🔒</span> 3. Security, Storage & Session Lifecycles
+            </h2>
+            <p style="margin-bottom: var(--space-3);">
+              All platform data layer profiles are persisted inside client-side structures with explicit database prefix bounds. Session security safeguards prevent cross-role injection loops on active dashboards.
+            </p>
+            <p style="margin-0;">
+              When triggering an account sign-out flow, your session keys are instantly deleted from storage, resetting the authorization state back to an unauthenticated fallback view baseline.
+            </p>
+          </div>
+
+          <div class="card glass-card" style="padding: var(--space-6);">
+            <h2 style="font-size: var(--text-lg); font-weight: var(--fw-semibold); color: var(--text-primary); margin-bottom: var(--space-3); display: flex; align-items: center; gap: var(--space-2);">
+              <span>⚖️</span> 4. User Rights and Controls
+            </h2>
+            <p style="margin-0;">
+              You maintain total authority over your visibility flags. You can modify your visibility toggle status inside your settings panel at any time, retract submitted applications permanently, or clear your tracked skill profile matrices.
+            </p>
+          </div>
+
+        </div>
+      </section>
+    `;
+
+    return container;
+  }
+
+  /* ── PUBLIC API — CONTACT US ── */
+  function renderContactUs() {
+    const container = document.createElement('div');
+    container.className = 'contact-page-layout';
+    container.style.width = '100%';
+
+    container.innerHTML = `
+      <section class="container" style="padding: var(--space-12) var(--space-4) var(--space-6); max-width: 650px; margin: 0 auto; text-align: center;">
+        <div class="reveal">
+          <span class="tag tag-primary mb-4" style="text-transform: uppercase; font-size: 11px; letter-spacing: 0.05em; display: inline-block;">Connect with Us</span>
+          <h1 style="font-size: var(--text-4xl); font-weight: var(--fw-extrabold); line-height: 1.2; margin-bottom: var(--space-3);">
+            How Can We <span class="text-gradient">Help You Grow?</span>
+          </h1>
+          <p class="text-secondary" style="font-size: var(--text-sm); line-height: 1.6;">
+            Choose the pathway that matches your current objective so we can route you straight to the right handler.
+          </p>
+        </div>
+      </section>
+
+      <section class="container" style="padding: 0 var(--space-4) var(--space-16); max-width: 900px; margin: 0 auto;">
+        <div style="display: flex; flex-flow: row wrap; gap: var(--space-6); justify-content: center; align-items: stretch;">
+          
+          <div class="card glass-card reveal" style="flex: 1 1 340px; max-width: 420px; padding: var(--space-6); display: flex; flex-direction: column; justify-content: space-between;">
+            <div>
+              <div style="font-size: 2rem; margin-bottom: var(--space-2);">💻</div>
+              <h3 style="font-size: var(--text-lg); font-weight: var(--fw-semibold); margin-bottom: var(--space-2);">For Developers & Candidates</h3>
+              <p class="text-xs text-secondary" style="line-height: 1.6; margin-bottom: var(--space-4);">
+                Need assistance optimizing your profile, connecting your workspace repository timelines, verifying portfolio assets, or resolving an account session bug? Our technical support squad is ready to handle your query.
+              </p>
+            </div>
+            <button class="btn btn-outline btn-block btn-sm" 
+                    onclick="Components.showToast('Launching developer support channel... 🛠️', 'info')">
+              Open Support Ticket
+            </button>
+          </div>
+
+          <div class="card glass-card reveal" style="flex: 1 1 340px; max-width: 420px; padding: var(--space-6); display: flex; flex-direction: column; justify-content: space-between; border: 2px solid var(--brand-primary); box-shadow: 0 10px 25px -10px rgba(0,0,0,0.15);">
+            <div>
+              <div style="font-size: 2rem; margin-bottom: var(--space-2);">🏢</div>
+              <h3 style="font-size: var(--text-lg); font-weight: var(--fw-semibold); margin-bottom: var(--space-2);">For Hiring Teams & Enterprise</h3>
+              <p class="text-xs text-secondary" style="line-height: 1.6; margin-bottom: var(--space-4);">
+                Looking to scale past your plan limits, initiate secure compliance auditing logging (SOC 2 trackers), arrange automated custom data pipeline indexing, or require a dedicated account handler assigned to your brand?
+              </p>
+            </div>
+            <button class="btn btn-primary btn-block btn-sm" 
+                    onclick="Components.showToast('Initiating consultation channel callback routing... 📞', 'success')">
+              Contact Enterprise Sales
+            </button>
+          </div>
+
+        </div>
+      </section>
     `;
 
     return container;
@@ -864,6 +1088,9 @@ const Components = (() => {
     renderSkeletonCards,
     renderBottomNav,
     renderPricingPlans,
+    renderAboutUs,
+    renderPrivacyPolicy,
+    renderContactUs,
     escapeHTML,
   };
 
