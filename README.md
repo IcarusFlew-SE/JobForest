@@ -67,4 +67,8 @@ JobForest/
 │   └── search.js            # Search & Filtering
 └── index.html               # Landing Page & Home
 ```
+
+## Known Problems
+
+1. Some Pages have different selective modules that require reloading the page to render in the content
 ---

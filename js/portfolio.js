@@ -36,7 +36,7 @@ const Portfolio = (() => {
         selectors.forEach(s => s.classList.remove('active'));
 
         // Add selected theme class
-        const theme = btn.dataset;
+        const theme = btn.getAttribute('data-theme');
         previewCard.classList.add(`theme-${theme}`);
         btn.classList.add('active');
 

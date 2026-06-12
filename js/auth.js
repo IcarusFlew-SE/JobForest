@@ -137,7 +137,7 @@ const Auth = (() => {
       document.querySelectorAll('.form-error').forEach(el => el.remove());
       document.querySelectorAll('.form-input.error').forEach(el => el.classList.remove('error'));
 
-      if (!email || !email.includes('@')) {
+      if (!(email && email.includes('@'))) {
         showFieldError(emailField, 'Valid email is required');
         return;
       }
