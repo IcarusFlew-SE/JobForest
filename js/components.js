@@ -24,7 +24,7 @@ const Components = (() => {
    */
   function renderNavbar(currentPage = '') {
     const user       = JobForestData.getCurrentUser();
-    const isLoggedIn = !!user;
+    const isLoggedIn = user !== null;
     const isEmployer = user?.role === 'employer';
 
     // Compute relative paths based on whether we're in /pages/ or root

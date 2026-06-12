@@ -688,7 +688,7 @@ const JobForestData = (() => {
    * @returns {CandidateProfile|EmployerProfile}
    */
   function getCurrentUser() {
-    return _load(KEYS.USER, _candidates[0]);
+    return _load(KEYS.USER, null);
   }
 
   /**
