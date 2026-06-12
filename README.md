@@ -71,4 +71,6 @@ JobForest/
 ## Known Problems
 
 1. Some Pages have different selective modules that require reloading the page to render in the content
+
+2. The use of Public APIs for page iteration purposes
 ---
