@@ -72,32 +72,40 @@
     <section
       class="stats-bar"
       style="
-        border-top:1px solid var(--border-light);
-        border-bottom:1px solid var(--border-light);
-        padding:4rem 2rem;
-        background:rgba(0,0,0,0.02);"
+        border-top: 1px solid var(--border-light);
+        border-bottom: 1px solid var(--border-light);
+        padding: 4rem 2rem;
+        background: rgba(0,0,0,0.02);
+        width: 100%;
+        display: flex;
+        justify-content: center;"
     >
       <h2 id="stats-title" class="sr-only">Platform Statistics</h2>
-      <div class="container grid grid-cols-3 gap-6 text-center">
-        <div class="reveal">
+      
+      <div class="container flex flex-wrap items-center justify-center gap-8 text-center" style="max-width: 1024px; margin: 0 auto;">
+        
+        <div class="reveal" style="flex: 1 1 200px; max-width: 280px; margin: 0 auto;">
           <div class="text-3xl font-extrabold text-gradient" data-counter="1240" data-suffix="+" aria-describedby="stat-vacancies">0</div>
           <p id="stat-vacancies" class="text-sm text-tertiary mt-1">Active Vacancies</p>
         </div>
-        <div class="reveal">
+
+        <div class="reveal" style="flex: 1 1 200px; max-width: 280px; margin: 0 auto;">
           <div class="text-3xl font-extrabold text-gradient" data-counter="450" aria-describedby="stat-workplaces">0</div>
           <p id="stat-workplaces" class="text-sm text-tertiary mt-1">Partner Workplaces</p>
         </div>
-        <div class="reveal">
+
+        <div class="reveal" style="flex: 1 1 200px; max-width: 280px; margin: 0 auto;">
           <div class="text-3xl font-extrabold text-gradient" data-counter="8200" data-suffix="+" aria-describedby="stat-hired">0</div>
           <p id="stat-hired" class="text-sm text-tertiary mt-1">Hired Candidates</p>
         </div>
+
       </div>
     </section>
 
     <!-- How it Works -->
     <section class="container py-16" aria-labelledby="how-it-works-title">
-      <div class="text-center mb-12 reveal">
-        <h2 id="how-it-works-title">How JobForest Works</h2>
+      <div class="text-center mt-8 mb-16 reveal"> 
+        <h2 id="how-it-works-title" class="mb-4">How JobForest Works</h2>
         <p class="text-secondary">A simple 3-step process to transition into your next career growth phase.</p>
       </div>
       <div class="features-grid">
