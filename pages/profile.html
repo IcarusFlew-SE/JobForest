@@ -29,31 +29,45 @@
       <div class="grid grid-cols-3 gap-8">
         
         <!-- Left Side: Profile overview & completion -->
-        <aside class="col-span-1 reveal">
-          <div class="card glass-card text-center" id="profile-sidebar-card" style="padding: var(--space-6);">
-            <!-- Populated dynamically by Profile.js -->
-            <div class="btn-loader"></div>
-            <p class="text-xs text-tertiary mt-2">Loading profile details...</p>
+        <aside class="col-span-1 reveal" style="display: flex; justify-content: center; align-items: flex-start; width: 100%;">
+          <div class="card glass-card text-center flex flex-col items-center justify-center" 
+              id="profile-sidebar-card" 
+              style="padding: var(--space-6); width: 100%; max-width: 320px; margin: 0 auto;">
+            
+            <div class="btn-loader" style="margin: 0 auto;"></div>
+            <p class="text-xs text-tertiary mt-2 text-center" style="width: 100%;">Loading profile details...</p>
+            
           </div>
         </aside>
 
         <!-- Center & Right: Editor and Live Preview Tabbed -->
         <section class="col-span-2 reveal">
           <!-- Editor section switches -->
-          <div class="card glass-card" style="padding: var(--space-6);">
-            
-            <div class="tabs-container mb-6">
-              <div class="tabs-header flex gap-4" style="border-bottom: 1px solid var(--border-light); padding-bottom: 1px;">
-                <button class="tab-btn active" onclick="switchProfileTab('editor', this)" style="border:none; padding:var(--space-2) var(--space-4); cursor:pointer; font-weight:600;">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;margin-right:4px;"><path d="M12 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.375 2.625a2.121 2.121 0 1 1 3 3L12 15l-4 1 1-4Z"/></svg>
-                  Section Editor
-                </button>
-                <button class="tab-btn" onclick="switchProfileTab('preview', this)" style="border:none; padding:var(--space-2) var(--space-4); cursor:pointer; font-weight:600;">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;margin-right:4px;"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
-                  Live Resume CV
-                </button>
-              </div>
+          <div class="tabs-container mb-6">
+            <div class="tabs" style="border-bottom: 1px solid var(--border-light); margin-bottom: 0; display: flex; gap: var(--space-2);">
+              
+              <button class="tab active" 
+                      onclick="switchProfileTab('editor', this)" 
+                      style="display: inline-flex; align-items: center; gap: var(--space-2); font-weight: var(--fw-semibold); font-family: var(--font-body);">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;">
+                  <path d="M12 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
+                  <path d="M18.375 2.625a2.121 2.121 0 1 1 3 3L12 15l-4 1 1-4Z"/>
+                </svg>
+                Section Editor
+              </button>
+              
+              <button class="tab" 
+                      onclick="switchProfileTab('preview', this)" 
+                      style="display: inline-flex; align-items: center; gap: var(--space-2); font-weight: var(--fw-semibold); font-family: var(--font-body);">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                  <polyline points="14 2 14 8 20 8"/>
+                </svg>
+                Live Resume CV
+              </button>
+
             </div>
+          </div>
 
             <!-- Tab 1: Editor Form Panels -->
             <div id="tab-profile-editor" class="flex flex-col gap-6">
@@ -96,14 +110,19 @@
   <!-- Script Modules -->
   <script src="../js/data.js"></script>
   <script src="../js/components.js"></script>
-  <script src="../js/profile.js"></script>
   <script src="../js/app.js"></script>
+  <script src="../js/profile.js"></script>
   
   <script>
     document.addEventListener('DOMContentLoaded', () => {
+      // 1. Render layout components before compiling inner cards
       Components.renderNavbar('profile');
+      Components.renderFooter('profile');
+      
+      // 2. Fire global design system initializations safely
       App.init('profile');
       
+      // 3. Authenticate active session credentials
       const user = JobForestData.getCurrentUser();
       if (!user) {
         Components.showToast('Please log in as a candidate to construct resumes.', 'warning');
@@ -124,17 +143,21 @@
         return;
       }
 
+      // 4. Safely invoke your profile engine now that everything else is ready
       Profile.init();
-      Components.renderFooter('profile');
     });
 
     function switchProfileTab(tabName, btn) {
       const editor = document.getElementById('tab-profile-editor');
       const preview = document.getElementById('tab-profile-preview');
       
-      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      // 1. Target all elements using the generic tab class wrapper and clear the active line state
+      document.querySelectorAll('.tab').forEach(b => b.classList.remove('active'));
+      
+      // 2. Add the active line asset class to the clicked tab element
       btn.classList.add('active');
 
+      // 3. Toggle form section visibility transitions
       if (tabName === 'editor') {
         editor.classList.remove('hidden');
         preview.classList.add('hidden');
@@ -142,12 +165,8 @@
         editor.classList.add('hidden');
         preview.classList.remove('hidden');
         
-        // Trigger a fresh sync from local storage for live preview
-        const user = JobForestData.getCurrentUser();
+        // Trigger your live resume compiling lifecycle sync
         if (typeof Profile !== 'undefined') {
-          // Profile.js updates the user in-place, but let's re-render
-          // The render method is internal, but init or reload handles it.
-          // In profile.js we exposed Profile.init which resets bindings
           Profile.init();
         }
       }
