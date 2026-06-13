@@ -32,7 +32,7 @@ const Matching = (() => {
         recalcBtn.classList.add('btn-loading');
         setTimeout(() => {
           recalcBtn.classList.remove('btn-loading');
-          calculateAndRenderMatches();
+          Matching.calculateAndRenderMatches();
           Components.showToast('Match scores updated based on your latest profile!', 'success');
         }, 1200);
       });
@@ -199,7 +199,7 @@ const Matching = (() => {
     const missingSkills = item.breakdown.missingSkills.length > 3 ? '...' : '';
 
     const card = document.createElement('div');
-    card.className = 'card glass-card reveal';
+    card.className = 'card glass-card';
     card.style.cursor = 'pointer';
     
     card.innerHTML = `
@@ -400,6 +400,7 @@ const Matching = (() => {
     init,
     calculateScore,
     openDetailsModal,
-    addSuggestedSkill
+    addSuggestedSkill,
+    calculateAndRenderMatches
   };
 })();
