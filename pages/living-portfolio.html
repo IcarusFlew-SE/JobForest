@@ -53,7 +53,7 @@
           </div>
 
           <!-- Newsletter Early Access card -->
-          <div class="card glass-card" style="padding: var(--space-5); border: 1.5px solid var(--color-accent);">
+          <div id="early-access-card" class="card glass-card" style="padding: var(--space-5); border: 1.5px solid var(--color-accent); position: relative;">
             <h3>Unlock Early Access</h3>
             <p class="text-xs text-secondary mt-2 mb-4" style="line-height:1.5;">
               Be the first to know when we rollout V2 dynamic portfolios public testing profiles. Subscribe to the waitlist below.
@@ -63,7 +63,40 @@
               <button type="submit" class="btn btn-accent btn-sm" style="border-radius: 6px;">Notify Me</button>
             </form>
           </div>
-        </section>
+
+          <script>
+            (() => {
+              // 1. Fetch current user from your data stream or localStorage framework
+              // Defaulting to an empty object if no user session is detected to prevent uncaught script crashes
+              const currentUser = JSON.parse(localStorage.getItem('currentUser')) || {}; 
+              
+              // 2. Check the user's current subscription tier token
+              // Looking for your active premium plan tags ("Sapling" or "Forest Elite")
+              const hasUpgradedPlan = currentUser.plan === 'Sapling' || currentUser.plan === 'Forest Elite';
+
+              // 3. If they are on a free plan ("Seedling") or logged out, trigger the blur overlay
+              if (!hasUpgradedPlan) {
+                const card = document.getElementById('early-access-card');
+                
+                // Inject the blur behavior class wrapper
+                card.classList.add('premium-lock-blur');
+                
+                // Inject a clean, unblurred call-to-action layer over the blur area
+                const lockOverlay = document.createElement('div');
+                lockOverlay.className = 'premium-lock-overlay';
+                lockOverlay.innerHTML = `
+                  <span style="font-size: 1.5rem; margin-bottom: var(--space-1);">⭐</span>
+                  <h4 style="font-size: var(--text-sm); font-weight: var(--fw-bold); color: #fff; margin-bottom: 2px;">Premium Feature</h4>
+                  <p class="text-xs text-secondary mb-3" style="max-width: 200px; line-height: 1.3;">Upgraded plans get instant access to V2 beta test tracking profiles.</p>
+                  <button class="btn btn-primary btn-xs" style="min-height: 28px; font-size: 10px;" onclick="window.location.href='pricingplan.html'">
+                    Upgrade Now
+                  </button>
+                `;
+                
+                card.appendChild(lockOverlay);
+              }
+            })();
+          </script>
 
         <!-- Right: Portfolio Design Layout Preview Customizer -->
         <section class="col-span-3 reveal">
