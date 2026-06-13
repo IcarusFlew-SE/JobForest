@@ -36,8 +36,8 @@ const Profile = (() => {
                 stroke-dashoffset="${326.73 * (1 - (user.profileCompletion || 0) / 100)}"/>
             </svg>
             <div class="progress-circular-text">
-              <span class="progress-circular-value">${user.profileCompletion || 0}%</span>
-              <span class="progress-circular-label">Complete</span>
+              <span class="progress-circular-value" style="padding-left: 0.5rem; padding-top: 0.5rem; font-size: 1.25rem;">${user.profileCompletion || 0}%</span>
+              <span class="progress-circular-label" style="padding-left: 0.2rem;">Complete</span>
             </div>
           </div>
         </div>
